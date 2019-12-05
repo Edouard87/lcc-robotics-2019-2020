@@ -7,17 +7,50 @@
     <title>Desktop</title>
   </head>
   <body>
-    <div id="window" class="window">
-      <div id="windowheader" class="window-header">
-
+    <div class="desktop">
+      <div class="menu-bar">
+        <div class="menu-bar-img">
+          <img src="/imgs/apple-logo.png" alt="">
+        </div>
+        <div class="first menu-bar-item">
+          <p>File</p>
+        </div>
+        <div class="menu-bar-item">
+          <p>Edit</p>
+        </div>
+        <div class="menu-bar-item">
+          <p>View</p>
+        </div>
+        <div class="menu-bar-item">
+          <p>Tools</p>
+        </div>
+        <div class="menu-bar-item">
+          <p>Window</p>
+        </div>
+        <div class="menu-bar-item">
+          <p>Services</p>
+        </div>
+        <div class="menu-bar-item">
+          <p>Help</p>
+        </div>
       </div>
-      <div class="window-content">
+      <div id="window" class="window">
+        <div id="windowheader" class="window-header">
+          <div class="header-button-wrapper">
+            <div class="close">
 
+            </div>
+          </div>
+        </div>
+        <div class="window-content">
+
+        </div>
+        <label for="">Open App</label>
+        <input id="app-name" type="text" name="" value="">
+        <span id="get-app">Open</span>
       </div>
-      <label for="">Open App</label>
-      <input id="app-name" type="text" name="" value="">
-      <span id="get-app">Open</span>
     </div>
+    
     <script src="/js/load-app.js"></script>
     <script src="/js/ds.js"></script>
   </body>
