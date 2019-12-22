@@ -1,3 +1,64 @@
+// All relevant Mustache templates must be loaded in
+
+$.ajax({
+  url: "/templates/window.mustache",
+  method: "get",
+  success: function (windowTemplate) {
+
+    $.ajax({
+        url: "/templates/desktop-icon.mustache",
+        method: "get",
+        success: function(desktopIconTemplate) {
+
+            icons = [{
+              app: "testapp",
+              app_name: "Hello",
+              top: "10px",
+              left: "10px",
+              image: "/imgs/hard-disk-icon.png"
+            }]
+
+            for (var i = 0; i < icons.length; i++) {
+
+                icons[i].iid = i;
+
+                $(".desktop").append(Mustache.to_html(desktopIconTemplate,icons[i]));
+                dragElement(document.getElementById("icon-" + i));
+                $("#icon-" + i).on("dblclick", function() {
+
+                    wids = []
+                    for (var a = 0; a < $(".window").length; a++) {
+                        wids.push($(".window")[a].getAttribute("wid"));
+                    }
+                    wid = parseInt(wids.sort()[wids.length - 1]) + 1
+                    $(".desktop").append(Mustache.to_html(windowTemplate, {
+                      wid: wid,
+                      app: $(this).attr("app"),
+                      app_name: $(this).attr("app_name")
+                    }));
+                    dragElement(document.querySelector("[wid='" + wid + "']"));
+                    updateCloseButton();
+
+                });
+
+            }
+
+        }
+    })
+
+  }
+})
+
+function updateCloseButton() {
+
+    $(".close").on("click", function() {
+
+        $("[wid='" + $(this).attr("delTarget") + "']").remove();
+
+    });
+
+};
+
 //Make the DIV element draggagle:
 dragElement(document.getElementById("window"));
 
@@ -9,7 +70,7 @@ function dragElement(elmnt) {
         document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
     } else {
         /* otherwise, move the DIV from anywhere inside the DIV:*/
-        // elmnt.onmousedown = dragMouseDown;
+        elmnt.onmousedown = dragMouseDown;
     }
 
     function dragMouseDown(e) {
@@ -35,10 +96,6 @@ function dragElement(elmnt) {
         // set the element's new position:
         elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        console.log(pos1)
-        console.log(pos2)
-        console.log(pos3)
-        console.log(pos4)
 
     }
 
