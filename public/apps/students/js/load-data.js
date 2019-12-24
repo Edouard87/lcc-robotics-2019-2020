@@ -59,11 +59,31 @@ $.ajax({
 
 function onHoverEffect(elm,colNum) {
 
-    $(".top-map #col-" + colNum + " " + " h1").html(elm.attr("label"))
-    $(".file-selector #col-" + colNum+1).empty();
+    $(".top-map #col-" + colNum + " img").attr("src","/apps/students/img/" + elm.attr("label") + ".png");
+    $(".top-map #col-" + colNum + " img").on("error", function() {
+        
+        console.log(colNum);
+
+        if (colNum == 2) {
+
+            $(this).attr("src", "/apps/students/img/file-icon.png");
+
+        } else {
+
+            $(this).attr("src", "/apps/students/img/dir-icon.png");
+
+        }
+
+
+    });
+    $(".top-map #col-" + colNum + " h1").html(elm.attr("label"))
+    $(".file-selector #col-" + (colNum+1)).empty();
     $("#col-" + colNum + " " + ".selector-col-item").css("background", "white");
     elm.css("background", "rgb(187,187,225)");
     $(".top-map #col-" + colNum).css("display", "block");
-    $(".top-map #sized-" + colNum).css("display", "block")
+    $(".top-map #sized-" + colNum).css("display", "block");
+
+    $(".top-map #col-" + (colNum+1)).css("display", "none");
+    $(".top-map #sized-" + (colNum+1)).css("display", "none");
     
 }
