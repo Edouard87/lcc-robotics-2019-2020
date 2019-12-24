@@ -1,0 +1,56 @@
+.menu-bar {
+
+  background-color: rgb(221, 221, 221);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 20px;
+  border-bottom: 1px solid black;
+
+}
+
+.menu-bar .first {
+
+  margin-left: 5px !important;
+
+}
+
+.menu-bar-item {
+
+  width: auto;
+  height: 20px;
+  float: left;
+  margin-left: 15px;
+
+}
+
+.menu-bar-item p {
+
+  margin: 0;
+  line-height: 20px;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.menu-bar-img {
+
+  height: 20px;
+  /* width: 40px; */
+
+}
+
+.menu-bar-img {
+
+  float: left;
+  margin-left: 10px;
+
+}
+
+.menu-bar-img img {
+
+  /* width: 20px; */
+  height: 20px;
+
+}

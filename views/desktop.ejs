@@ -3,9 +3,12 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/master.css">
+    <link rel="stylesheet" href="/css/windows.css">
+    <link rel="stylesheet" href="/css/desktop-icons.css">
+    <link rel="stylesheet" href="/css/menu-bar.css">
     <!-- <script src="/js/load-resources.js"></script> -->
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="/bower_components/mustache/mustache.min.js"></script>
+    <script src="/components/jquery/dist/jquery.min.js"></script>
+    <script src="/components/mustache/mustache.min.js"></script>
 
     <title>Desktop</title>
   </head>
@@ -35,6 +38,29 @@
         </div>
         <div class="menu-bar-item">
           <p>Help</p>
+        </div>
+      </div>
+
+      <div wid="0" style="top: 10px; left: 10px;" class="window draggable">
+        <div id="windowheader" class="window-header">
+          <div class="header-item-wrapper header-left">
+            <div delTarget="0" class="close">
+
+            </div>
+          </div>
+          <div class="header-item-wrapper header-centered">
+            <div class="window-icon">
+
+            </div>
+            <h1>List of Participating Students</h1>
+          </div>
+          <div class="header-item-wrapper header-right">
+            <div class="header-right">
+            </div>
+          </div>
+        </div>
+        <div class="window-content">
+          <iframe src="/apps/students/index.html" frameborder="0"></iframe>
         </div>
       </div>
 

@@ -1,0 +1,18 @@
+{
+  "name": "lcc-robotics-2019-2020",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Edouard <edouardbuilder87@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Edouard87/lcc-robotics-2019-2020",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/components",
+    "test",
+    "tests"
+  ]
+}

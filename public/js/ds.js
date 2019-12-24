@@ -13,7 +13,7 @@ $.ajax({
             icons = [{
               app: "testapp",
               app_name: "Hello",
-              top: "10px",
+              top: "350px",
               left: "10px",
               image: "/imgs/hard-disk-icon.png"
             }]

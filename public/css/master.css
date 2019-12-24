@@ -1,0 +1,16 @@
+body {
+
+  background-image: url("/imgs/macos.png");
+  background-size: 150px;
+    font-family: Arial,
+    Helvetica,
+    sans-serif;
+
+}
+
+.draggable {
+
+  position: absolute;
+
+}
+
