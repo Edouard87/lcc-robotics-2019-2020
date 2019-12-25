@@ -15,11 +15,11 @@ $.ajax({
                     item_id: i, 
                     item_col: 1,
                     arrow_display: "block"
-                }))
+                }));
                 $("#item-1-" + i).on("click", function() {
 
-                    onHoverEffect($(this),1)
-                    
+                    onHoverEffect($(this),1);
+                    setJob = $(this).attr("label");
                     $.ajax({
                         url: "/job/" + $(this).attr("label"),
                         method: "get",
@@ -39,6 +39,20 @@ $.ajax({
                                 $("#item-2-" + a).on("click", function() {
                                     
                                     onHoverEffect($(this),2)
+
+                                });
+
+                                $("#item-2-" + a).on("dblclick", function () {
+
+                                    console.log("checking for person...");
+                                    parent.createWindow({
+                                      page_index: "/apps/students/person.html",
+                                      window_name: $(this).attr("label"),
+                                      width: 500,
+                                      height: 300,
+                                      meta_1: setJob,
+                                      meta_2: $(this).attr("label")
+                                    });
 
                                 })
 

@@ -1,4 +1,4 @@
-<div wid="{{wid}}" style="top: 10px; left: 10px;" class="window draggable">
+<div wid="{{wid}}" style="top: 10px; left: 10px; width: {{width}}px; height: {{height}}px" class="window draggable">
     <div id="windowheader" class="window-header">
         <div class="header-item-wrapper header-left">
         <div delTarget="{{wid}}" class="close">
@@ -9,14 +9,14 @@
         <div class="window-icon">
 
         </div>
-        <h1>{{app_name}}</h1>
+        <h1>{{window_name}}</h1>
         </div>
         <div class="header-item-wrapper header-right">
         <div class="header-right">
         </div>
         </div>
     </div>
-    <div class="window-content">
-        <iframe src="/apps/{{app}}/index.html" frameborder="0"></iframe>
+    <div class="window-content" style="height: {{content_height}}px">
+        <iframe meta_1="{{meta_1}}" meta_2="{{meta_2}}" src="{{page_index}}" frameborder="0"></iframe>
     </div>
 </div>

@@ -39,8 +39,17 @@ app.get("/jobs/all/", function (req, res) {
 
 app.get("/job/:job", function(req, res) {
   
-   var people = fs.readdirSync(__dirname + "/public/apps/students/data/" + req.params.job)
+  var people = fs.readdirSync(__dirname + "/public/apps/students/data/" + req.params.job)
   res.send(people);
+
+});
+
+app.get("/description/:job/:person", function(req, res) {
+  
+  var person = fs.readFileSync(__dirname + "/public/apps/students/data/" + req.params.job + "/" + req.params.person + "/english.desc","utf-8");
+  res.send(person)
+
+  // console.log()
 
 })
 

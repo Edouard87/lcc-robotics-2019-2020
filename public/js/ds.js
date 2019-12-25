@@ -1,5 +1,16 @@
 // All relevant Mustache templates must be loaded in
 
+$(document).on("click", function() {
+
+    if ($(event.target).attr("class") != "icon-image") {
+
+        $(".desktop-icon h1").css("background", "white")
+        $(".desktop-icon h1").css("color", "black")
+
+    }
+
+})
+
 $.ajax({
   url: "/templates/window.mustache",
   method: "get",
@@ -11,8 +22,8 @@ $.ajax({
         success: function(desktopIconTemplate) {
 
             icons = [{
-              app: "testapp",
-              app_name: "Hello",
+              app: "students",
+              app_name: "List of Participating Students",
               top: "350px",
               left: "10px",
               image: "/imgs/hard-disk-icon.png"
@@ -24,20 +35,25 @@ $.ajax({
 
                 $(".desktop").append(Mustache.to_html(desktopIconTemplate,icons[i]));
                 dragElement(document.getElementById("icon-" + i));
+                
+                $("#icon-" + i).on("mousedown", function() {
+                    
+                    $(".desktop-icon h1").css("background","white")
+                    $(".desktop-icon h1").css("color","black")
+
+                    $(this).find("h1").css("background","rgb(1,3,0)");
+                    $(this).find("h1").css("color", "white");
+
+                });
+                
                 $("#icon-" + i).on("dblclick", function() {
 
-                    wids = []
-                    for (var a = 0; a < $(".window").length; a++) {
-                        wids.push($(".window")[a].getAttribute("wid"));
-                    }
-                    wid = parseInt(wids.sort()[wids.length - 1]) + 1
-                    $(".desktop").append(Mustache.to_html(windowTemplate, {
-                      wid: wid,
-                      app: $(this).attr("app"),
-                      app_name: $(this).attr("app_name")
-                    }));
-                    dragElement(document.querySelector("[wid='" + wid + "']"));
-                    updateCloseButton();
+                    createWindow({
+                      page_index: "/apps/" + $(this).attr("app") + "/index.html",
+                      window_name: $(this).attr("app_name"),
+                      width: 600,
+                      height: 300
+                    })
 
                 });
 
@@ -47,7 +63,43 @@ $.ajax({
     })
 
   }
-})
+});
+
+function createWindow(meta) {
+
+    $.ajax({
+      url: "/templates/window.mustache",
+      method: "get",
+      success: function (windowTemplate) {
+
+            var wids = []
+            var wid;
+            for (var a = 0; a < $(".window").length; a++) {
+              wids.push($(".window")[a].getAttribute("wid"));
+            }
+            if (wids.length == 0) {
+                wid = 0;
+            } else {
+                wid = parseInt(wids.sort()[wids.length - 1], 10) + 1;
+            }
+            meta.wid = wid;
+            meta.content_height = meta.height-17;
+            // console.log(meta)
+            $(".desktop").append(Mustache.to_html(windowTemplate,meta));
+            dragElement(document.querySelector("[wid='" + wid + "']"));
+            updateCloseButton();
+            console.log("[wid='" + wid + "']");
+            $("[wid='" + wid + "']").css("z-index",51)
+            $("[wid='" + wid + "']").on("mousedown", function() {
+                $(".window").css("z-index",1);
+                $(this).css("z-index",50);
+            })
+
+      }
+
+    });
+
+}
 
 function updateCloseButton() {
 
@@ -74,8 +126,11 @@ function dragElement(elmnt) {
     }
 
     function dragMouseDown(e) {
+        $(".window").css("z-index", "1");
         e = e || window.event;
         e.preventDefault();
+        console.log(e)
+        // e.style.zIndex = 99;
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
