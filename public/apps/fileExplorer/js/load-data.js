@@ -1,40 +1,51 @@
 $.ajax({
     url: "/templates/file-explorer-item.mustache",
     method: "get",
+    error: function() {
+        console.log("error!")
+    },
     success: function(template) {
 
         $.ajax({
-          url: "/jobs/all/",
+          url: "/dirlookup/" + window.frameElement.getAttribute("meta_1") + "/0/1",
           method: "get",
-          success: function (allJobs) {
+          success: function (maindir) {
 
-            for (var i = 0; i < allJobs.length; i++) {
+            console.log(maindir)
+
+            for (var i = 0; i < maindir.length; i++) {
 
                 $(".file-selector #col-1").append(Mustache.to_html(template, {
-                    label: allJobs[i], 
+                    label: maindir[i],
                     item_id: i, 
                     item_col: 1,
-                    arrow_display: "block"
+                    col_num: 1,
+                    item_num: i,
+                    arrow_display: "block",
+                    total_items: maindir.length
                 }));
                 $("#item-1-" + i).on("click", function() {
-
+                    
                     onHoverEffect($(this),1);
                     setJob = $(this).attr("label");
                     $.ajax({
-                        url: "/job/" + $(this).attr("label"),
+                        url: "/dirlookup/" + window.frameElement.getAttribute("meta_1") + "/" + $(this).attr("col_num") + "/" + $(this).attr("item_num"),
                         method: "get",
-                        success: function(people) {
+                        success: function(subdir) {
                             
                             $(".file-selector #col-2").empty();
                             
-                            for (var a = 0; a < people.length; a++) {
+                            for (var a = 0; a < subdir.length; a++) {
 
                                 $(".file-selector #col-2").append(Mustache.to_html(template, {
-                                  label: people[a],
+                                  label: subdir[a],
                                   item_id: a,
                                   item_col: 2,
-                                  arrow_display: "none"
-                                }))
+                                  col_num: 2,
+                                  item_num: a,
+                                  arrow_display: "none",
+                                  total_items: subdir.length
+                                }));
 
                                 $("#item-2-" + a).on("click", function() {
                                     
@@ -46,12 +57,13 @@ $.ajax({
 
                                     console.log("checking for person...");
                                     parent.createWindow({
-                                      page_index: "/apps/students/person.html",
+                                      page_index: "/apps/fileExplorer/sample.html",
                                       window_name: $(this).attr("label"),
                                       width: 500,
                                       height: 300,
-                                      meta_1: setJob,
-                                      meta_2: $(this).attr("label")
+                                      meta_1: window.frameElement.getAttribute("meta_1"),
+                                      meta_2: $(this).attr("item_num"),
+                                      meta_3: $(this).attr("label")
                                     });
 
                                 })
@@ -80,11 +92,11 @@ function onHoverEffect(elm,colNum) {
 
         if (colNum == 2) {
 
-            $(this).attr("src", "/apps/students/img/file-icon.png");
+            $(this).attr("src", "/apps/fileExplorer/img/file-icon.png");
 
         } else {
 
-            $(this).attr("src", "/apps/students/img/dir-icon.png");
+            $(this).attr("src", "/apps/fileExplorer/img/dir-icon.png");
 
         }
 
@@ -99,5 +111,6 @@ function onHoverEffect(elm,colNum) {
 
     $(".top-map #col-" + (colNum+1)).css("display", "none");
     $(".top-map #sized-" + (colNum+1)).css("display", "none");
+    $("#items").html(elm.attr("total_items"));
     
 }

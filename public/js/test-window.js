@@ -3,11 +3,11 @@ var testing = false;
 if (testing) {
 
     createWindow({
-      width: 500,
-      height: 300,
-      page_index: "/apps/students/person.html",
-      meta_1: "Drive System",
-      meta_2: "Darcy Loeane-Billings"
+        page_index: "/apps/aboutSchool/index.html",
+        window_name: "test",
+        width: 430,
+        height: 280,
+        meta_1: "aboutSchool"
     });
 
 }

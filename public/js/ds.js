@@ -1,5 +1,3 @@
-// All relevant Mustache templates must be loaded in
-
 $(document).on("click", function() {
 
     if ($(event.target).attr("class") != "icon-image") {
@@ -22,11 +20,24 @@ $.ajax({
         success: function(desktopIconTemplate) {
 
             icons = [{
-              app: "students",
+              app: "fileExplorer",
               app_name: "List of Participating Students",
               top: "350px",
               left: "10px",
-              image: "/imgs/hard-disk-icon.png"
+              image: "/imgs/hard-disk-icon.png",
+              meta_1: "students",
+              window_height: 350, 
+              window_width: 600
+            },
+            {
+                app: "fileExplorer",
+                app_name: "List of Participating Students",
+                top: "350px",
+                left: "100px",
+                image: "/imgs/hard-disk-icon.png",
+                meta_1: "texts",
+                window_height: 350,
+                window_width: 600
             }]
 
             for (var i = 0; i < icons.length; i++) {
@@ -51,8 +62,9 @@ $.ajax({
                     createWindow({
                       page_index: "/apps/" + $(this).attr("app") + "/index.html",
                       window_name: $(this).attr("app_name"),
-                      width: 600,
-                      height: 300
+                      width: $(this).attr("window_width"),
+                      height: $(this).attr("window_height"),
+                      meta_1: $(this).attr("meta_1")
                     })
 
                 });

@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/css/windows.css">
     <link rel="stylesheet" href="/css/desktop-icons.css">
     <link rel="stylesheet" href="/css/menu-bar.css">
-    <!-- <script src="/js/load-resources.js"></script> -->
     <script src="/components/jquery/dist/jquery.min.js"></script>
     <script src="/components/mustache/mustache.min.js"></script>
 
@@ -15,60 +14,24 @@
   <body>
     <div class="desktop">
       <div class="menu-bar">
-        <div class="menu-bar-img">
-          <img src="/imgs/apple-logo.png" alt="">
-        </div>
-        <div class="first menu-bar-item">
-          <p>File</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Edit</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>View</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Tools</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Window</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Services</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Help</p>
-        </div>
+        
       </div>
-
-      <!-- <div wid="0" style="top: 10px; left: 10px;" class="window draggable">
-        <div id="windowheader" class="window-header">
-          <div class="header-item-wrapper header-left">
-            <div delTarget="0" class="close">
-
-            </div>
-          </div>
-          <div class="header-item-wrapper header-centered">
-            <div class="window-icon">
-
-            </div>
-            <h1>List of Participating Students</h1>
-          </div>
-          <div class="header-item-wrapper header-right">
-            <div class="header-right">
-            </div>
-          </div>
-        </div>
-        <div class="window-content">
-          <iframe src="/apps/students/index.html" frameborder="0"></iframe>
-        </div>
-      </div> -->
-
+      <div class="menu-bar-right-buttons">
+        <img src="/imgs/workspagemanager.png" alt="">
+        <h1>Workspace Manager</h1>
+      </div>
     </div>
     
     <script src="/js/load-app.js"></script>
     <script src="/js/ds.js"></script>
     <script src="/js/test-window.js"></script>
+    <script src="/js/menu-bar.js"></script>
+
+    <template id="menu-bar-img-template">
+      <div class="menu-bar-img">
+        <img src="/imgs/apple-logo.png" alt="">
+      </div>
+    </template>
 
   </body>
 </html>

@@ -22,6 +22,18 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static("public"));
 
+function getMainDir(maindirname) {
+
+  var maindir = fs.readdirSync(__dirname + "/public/apps/fileExplorer/" + maindirname);
+  
+  var index = maindir.indexOf(".DS_Store");
+  if (index > -1) {
+    maindir.splice(index, 1);
+  }
+  return maindir;
+  
+}
+
 app.get("/", function(req, res) {
 
   res.render("desktop")
@@ -30,32 +42,34 @@ app.get("/", function(req, res) {
 
 app.get("/jobs/all/", function (req, res) {
 
-  // console.log("loading...")
   var files = fs.readdirSync(__dirname + "/public/apps/students/data/")
-  // console.log(files)
   res.send(files);
 
 });
 
-app.get("/job/:job", function(req, res) {
+app.get("/dirlookup/:maindir/:colnum/:itemnum", function (req, res) {
   
-  var people = fs.readdirSync(__dirname + "/public/apps/students/data/" + req.params.job)
-  res.send(people);
+  var maindir = getMainDir(req.params.maindir)
 
-});
-
-app.get("/description/:job/:person", function(req, res) {
+  if (req.params.colnum == 0) {
+    return res.send(maindir);
+  };
   
-  var person = fs.readFileSync(__dirname + "/public/apps/students/data/" + req.params.job + "/" + req.params.person + "/english.desc","utf-8");
+  var file = fs.readdirSync(__dirname + "/public/apps/fileExplorer/" + req.params.maindir + "/" + maindir[req.params.itemnum]);
+  
+  res.send(file);
+
+})
+
+app.get("/textlookup/:maindir/:subdir/:subsubdir", function(req, res) {
+  
+  var maindir = getMainDir(req.params.maindir)
+  var person = fs.readFileSync(__dirname + "/public/apps/fileExplorer/" + req.params.maindir + "/" + maindir[req.params.subdir] + "/" + req.params.subsubdir + "/english.desc", "utf-8");
   res.send(person)
-
-  // console.log()
 
 })
 
 
 app.listen(3000, function() {
-
   console.log("Server has started...");
-
 });

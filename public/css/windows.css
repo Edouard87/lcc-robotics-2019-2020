@@ -24,7 +24,7 @@
 
 .window-content {
 
-  width: auto;
+  width: 100%;
   height: 283px;
   overflow: scroll;
   border: 1px solid black;

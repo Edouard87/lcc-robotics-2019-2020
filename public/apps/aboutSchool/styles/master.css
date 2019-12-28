@@ -1,0 +1,86 @@
+body {
+    margin: 0;
+        font-family: Arial,
+        Helvetica,
+        sans-serif;
+}
+
+.page-header {
+
+    width: 100%;
+
+}
+
+.school-info {
+    width: 300px;
+    margin-left: auto;
+}
+
+.school-info .top-section {
+    
+    border-bottom: 1px solid rgb(156,156,156);
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.school-info .top-section h1.top-right {
+
+  margin-right: 10px;
+
+}
+
+.school-info .top-section h1 {
+
+    font-size: 10px;
+    font-weight: 400;
+
+}
+
+#copyright {
+
+    font-size: 10px;
+    font-weight: 400;
+    margin-bottom: 4px;
+
+}
+
+
+.middle-section p {
+
+    font-size: 9px;
+    margin-top: 0;
+
+}
+
+.bot-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bot-image {
+
+    height: 35px;
+
+}
+
+#bot-text h1 {
+
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 35px;
+    margin: 0;
+    height: 35px;
+    
+}
+
+#bot-text {
+
+    margin-right: 10px;
+
+}
+
+
+
+
+
