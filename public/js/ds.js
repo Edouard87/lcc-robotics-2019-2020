@@ -124,7 +124,7 @@ function updateCloseButton() {
 };
 
 //Make the DIV element draggagle:
-dragElement(document.getElementById("window"));
+// dragElement(document.getElementById("window"));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
@@ -146,6 +146,7 @@ function dragElement(elmnt) {
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
         pos4 = e.clientY;
+        // console.log(pos4);
         document.onmouseup = closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
@@ -157,13 +158,25 @@ function dragElement(elmnt) {
         // calculate the new cursor position:
         pos1 = pos3 - e.clientX;
         pos2 = pos4 - e.clientY;
-        // if (pos3 < 684) { pos3 = e.clientX;}
         pos3 = e.clientX;
         pos4 = e.clientY;
-        // set the element's new position:
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-
+        var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
+        var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
+        // set the element's new position amd apply restrictions
+        if (elmnt.offsetTop <= 21) {
+            elmnt.style.top = (elmnt.offsetTop + 1) + "px";
+        } else if (elmnt.offsetLeft <= 0) {
+            elmnt.style.left = (elmnt.offsetLeft + 1) + "px";
+        } else if ((elmnt.offsetLeft + elmnt.offsetWidth) >= viewportWidth) {
+            elmnt.style.left = (elmnt.offsetLeft - 1) + "px";
+            // console.log()
+        } else if ((elmnt.offsetTop + elmnt.offsetHeight) >= viewportHeight) {
+            elmnt.style.top = (elmnt.offsetTop - 1) + "px";     
+        } else {
+            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        }
+        
     }
 
     function closeDragElement() {

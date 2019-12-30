@@ -1,0 +1,35 @@
+.button-right-wrapper {
+
+  position: absolute;
+  width: 90px;
+  background: rgb(175, 175, 175);
+  border-radius: 5px;
+  box-shadow: 1px 1px 0px 0px rgba(0, 0, 0, 0.75);
+  cursor: default;
+
+}
+
+.button-right {
+
+
+  border: 4px double rgb(44, 44, 44);
+  border-radius: 5px;
+  /* background: rgb(221,221,221) */
+
+}
+
+.button-right h1 {
+  font-size: 15px;
+  margin: 0;
+  text-align: center;
+  padding: 3px 0;
+}
+
+.button-right .button-content {
+  background: rgb(221, 221, 221);
+  height: 100%;
+  width: 100%;
+  border-top: 1px solid white;
+  border-bottom: 1px solid black;
+  border-right: 2px solid black;
+}

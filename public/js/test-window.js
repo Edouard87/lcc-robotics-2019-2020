@@ -1,12 +1,12 @@
-var testing = false;
+var testing = true;
 
 if (testing) {
 
     createWindow({
-        page_index: "/apps/aboutSchool/index.html",
+        page_index: "/apps/lang/index.html",
         window_name: "test",
-        width: 430,
-        height: 280,
+        width: 270,
+        height: 140,
         meta_1: "aboutSchool"
     });
 
