@@ -37,10 +37,10 @@ for (var i = 0; i < menuItems.length; i++) {
 
     if (i==0) {
         // console.log($("#menu-bar-img-template").html())
-        $(".menu-bar").append(`<div menu="${i}" id="menu-item-${i}" class="menu-bar-img menu-button"><img src = "/imgs/apple-logo.png"></div>`)
+        $(".menu-bar").append(`<div menu="${i}" id="menu-item-${i}" class="menu-bar-img menu-button"><img class="menu-text" src = "/imgs/apple-logo.png"></div>`)
     } else {
 
-        $(".menu-bar").append(`<div menu="${i}" id="menu-item-${i}" class="menu-bar-item menu-button"><p>${menuItems[i].label}</p></div>`)
+        $(".menu-bar").append(`<div menu="${i}" id="menu-item-${i}" class="menu-bar-item menu-button"><p class="menu-text">${menuItems[i].label}</p></div>`)
 
     }
     
@@ -58,15 +58,6 @@ for (var i = 0; i < menuItems.length; i++) {
        $(this).css("color","white");
 
     });
-
-    $("#dropdown-menu-" + i).on("mouseleave", function() {
-
-        $(this).css("display","none");
-        $("#menu-item-" + $(this).attr("origin_button")).css("background", "transparent")
-        $("#menu-item-" + $(this).attr("origin_button")).css("color", "black")
-
-
-    })
 
     for (var a = 0; a < menuItems[i].submenus.length; a++) {
 

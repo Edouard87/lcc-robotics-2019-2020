@@ -1,3 +1,7 @@
+// Get language
+
+var lang = parent.getCookie("lang", "en");
+
 $(document).on("click", function() {
 
     if ($(event.target).attr("class") != "icon-image") {
@@ -6,6 +10,14 @@ $(document).on("click", function() {
         $(".desktop-icon h1").css("color", "black")
 
     }
+
+    if (!$(event.target).hasClass("menu-text")) {
+        $(".dropdown-menu").css("display", "none");
+        $(".menu-button").css("background", "transparent");
+        $(".menu-button").css("color", "black");
+    }
+
+    console.log()
 
 })
 
@@ -21,28 +33,21 @@ $.ajax({
 
             icons = [{
               app: "fileExplorer",
-              app_name: "List of Participating Students",
+              app_name_en: "List of Participating Students",
+              app_name_fr: "Liste des Étudiants Participant",
               top: "350px",
               left: "10px",
               image: "/imgs/hard-disk-icon.png",
               meta_1: "students",
               window_height: 350, 
               window_width: 600
-            },
-            {
-                app: "fileExplorer",
-                app_name: "List of Participating Students",
-                top: "350px",
-                left: "100px",
-                image: "/imgs/hard-disk-icon.png",
-                meta_1: "texts",
-                window_height: 350,
-                window_width: 600
             }]
 
             for (var i = 0; i < icons.length; i++) {
 
                 icons[i].iid = i;
+
+                icons[i].app_name = icons[i]["app_name_" + lang]
 
                 $(".desktop").append(Mustache.to_html(desktopIconTemplate,icons[i]));
                 dragElement(document.getElementById("icon-" + i));
@@ -124,7 +129,6 @@ function updateCloseButton() {
 };
 
 //Make the DIV element draggagle:
-// dragElement(document.getElementById("window"));
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
