@@ -1,6 +1,9 @@
+console.log(lang)
+
 var menuItems = [
     {
-        label: "home",
+        label_fr: "home",
+        label_en: "acceuil",
         submenus: [
             {
                 label: "About this School",
@@ -11,9 +14,11 @@ var menuItems = [
         ]
     },
     {
-      label: "Tools",
+      label_en: "Tools",
+      label_fr: "Outils",
       submenus: [{
-        label: "Settings",
+        label_en: "Settings",
+        label_fr: "Parmantères",
         app: "settings",
         window_height: 450,
         window_width: 570
@@ -21,9 +26,11 @@ var menuItems = [
     ]
     },
     {
-      label: "Help",
+      label_en: "Help",
+      label_fr: "Aide",
       submenus: [{
-        label: "What is this?",
+        label_en: "What is this?",
+        label_fr: "Quest-ce que c'est?",
         app: "info",
         window_height: 280,
         window_width: 430
@@ -34,6 +41,8 @@ var menuItems = [
 console.log(menuItems)
 
 for (var i = 0; i < menuItems.length; i++) {
+
+  menuItems[i].label = menuItems[i]["label_" + lang];
 
     if (i==0) {
         // console.log($("#menu-bar-img-template").html())
@@ -61,8 +70,7 @@ for (var i = 0; i < menuItems.length; i++) {
 
     for (var a = 0; a < menuItems[i].submenus.length; a++) {
 
-        console.log(menuItems[i].submenus[a]);
-
+        menuItems[i].submenus[a].label = menuItems[i].submenus[a]["label_" + lang];
         $("#dropdown-menu-" + i).append(`<div window_width="${menuItems[i].submenus[a].window_width}" window_height="${menuItems[i].submenus[a].window_height}" app="${menuItems[i].submenus[a].app}" app_name="${menuItems[i].submenus[a].label}" origin_menu="${i}" origin="menu-item-${i}" id="submenu-item-${i}-${a}" app="${menuItems[i].submenus[a].app}" class="dropdown-menu-item"><p>${menuItems[i].submenus[a].label}</p></div>`)
 
     }

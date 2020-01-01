@@ -1,7 +1,3 @@
-// Get language
-
-var lang = parent.getCookie("lang", "en");
-
 $(document).on("click", function() {
 
     if ($(event.target).attr("class") != "icon-image") {
