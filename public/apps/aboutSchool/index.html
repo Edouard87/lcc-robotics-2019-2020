@@ -2,28 +2,58 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="../../components/mustache/mustache.min.js"></script>
+    <script src="../../components/jquery/dist/jquery.min.js"></script>
+    <script src="/../../components/js-cookie/src/js.cookie.js"></script>
     <link rel="stylesheet" href="styles/master.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
 <body>
-    <img class="page-header" src="img/workspaceManagerHeader.png" alt="">
+    <img class="page-header" src="" alt="">
     <div class="school-info">
         <div class="top-section">
-            <h1 class="top-left">Release 1.0 (1909)</h1>
-            <h1 class="top-right">High School Version 211.5</h1>
+            <h1 class="top-left">
+              <en>Release 1.0 (1909)</en>
+              <fr>Version 1.0 (1909)</fr>
+            </h1>
+            <h1 class="top-right">
+                <en>High School Version 211.5</en>
+                <fr>École Secondaire Version 211.5</fr>
+            </h1>
         </div>
         <div class="middle-section">
             <h1 id="copyright">&copy; 1909-2020 Lower Canada College Computer, Inc.</h1>
-            <p>Lower Canada College is a private co-ed high school located in Notre-Dame-De-Grace on 4090 Avenue Royal, Montréal, QC.</p>
+            <p>
+                <en> Lower Canada College is a private co-ed high school located in Notre-Dame-De-Grace on 4090 Avenue
+                  Royal, Montréal, QC.
+                </en>
+                <fr>
+                    Lower Canada College est une école secondaire privée mixte située à Notre-Dame-De-Grace. Son addresse est le
+                    4090 sur l'Avenue Royal à Montréal au Québec.
+                </fr>
+            </p>
         </div>
     </div>
     <div class="bot-wrapper">
         <img id="bot-image" src="img/lcc-bot-bar.png" alt="">
         <div id="bot-text">
-          <h1>Developed with <strong>WEB</strong></h1>
+            
+            <h1>
+                <en>
+                    Developed with <strong>WEB</strong>
+                </en>
+                <fr style="font-size: 16px">
+                    Developpé avec le <strong>WEB</strong>
+                </fr>
+            </h1>
         </div>
     </div>
+    <script src="/../../js/cookies.js"></script>
+    <script src="/../../js/set-lang.js"></script>
+    <script>
+      $(".page-header").attr("src", "img/workspaceManagerHeader_" + lang + ".png")
+    </script>
 </body>
 </html>

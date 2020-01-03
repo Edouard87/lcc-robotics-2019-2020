@@ -1,16 +1,25 @@
-$(".sample img").attr("src", "/apps/fileExplorer/img/" + window.frameElement.getAttribute("meta_2"));
+$("students").each(function() {
+  $(this).css("display","none");
+})
+$("texts").each(function () {
+  $(this).css("display", "none");
+})
+
+$(window.frameElement.getAttribute("meta_4")).css("display","block");
+
+if (window.frameElement.getAttribute("meta_4") == "texts") {
+  $("#contributions-wrapper").css("display", "none")
+}
+
+$(".sample img").attr("src", "/apps/fileExplorer/img/" + window.frameElement.getAttribute("meta_1"));
 $(".sample img").on("error", function() {
 
-    console.log("no image")
-    $(this).attr("src","/apps/fileExplorer/img/error-image.png")
+    $(this).parent().css("display","none")
 
 });
 
-$.ajax({
-  url: "/textlookup/" + window.frameElement.getAttribute("meta_1") + "/" + window.frameElement.getAttribute("meta_2") + "/" + window.frameElement.getAttribute("meta_3"),
-  method: "get",
-  success: function(info) {
-    console.log("got person")
-      $("#person-desc").html(info)
-  }
-})
+$("#name").html(window.frameElement.getAttribute("meta_1"))
+
+$("#person-desc").html(window.frameElement.getAttribute("meta_2"));
+
+$("#contributions").html(window.frameElement.getAttribute("meta_3"))

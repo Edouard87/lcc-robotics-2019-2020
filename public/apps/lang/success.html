@@ -11,16 +11,27 @@
     <title>Document</title>
 </head>
 <body>
-    <p>The change in language was successful. A reload is required.</p>
+    <p style="margin-bottom: 5px;">
+      <en>The change in language was successful. A reload is required.</en>
+      <fr>La langue a été changée avec succès. Afin de poursuivre, vous devez recharger cette page.</fr>
+    </p>
+    <p style="font-size: 15px; margin-top: 0;">
+      <en><strong>Please note that</strong> this will close all open windows.</en>
+      <fr><strong>Veuillez noter que</strong> cette action fermera toutes les fenêtres ouvertes.</fr>
+    </p>
     <div id="reload-button" class="button-right-wrapper">
       <div class="button-right">
         <div class="button-content">
-          <h1>Reload</h1>
+          <h1>
+            <en>Reload</en>
+            <fr>Recharger</fr>
+          </h1>
         </div>
       </div>
     </div>
     <script src="/../../js/cookies.js"></script>
     <script src="js/lang.js"></script>
+    <script src="/../../js/set-lang.js"></script>
     
 </body>
 </html>

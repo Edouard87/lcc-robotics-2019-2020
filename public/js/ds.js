@@ -37,7 +37,18 @@ $.ajax({
               meta_1: "students",
               window_height: 350, 
               window_width: 600
-            }]
+            },
+        {
+          app: "fileExplorer",
+          app_name_en: "Texts",
+          app_name_fr: "Publications",
+          top: "350px",
+          left: "100px",
+          image: "/imgs/hard-disk-icon.png",
+          meta_1: "texts",
+          window_height: 350,
+          window_width: 600
+        }]
 
             for (var i = 0; i < icons.length; i++) {
 

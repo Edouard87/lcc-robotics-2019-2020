@@ -1,5 +1,8 @@
 body {
     margin: 0;
+    font-family: Arial,
+    Helvetica,
+    sans-serif;
 }
 
 .page-content {
@@ -19,7 +22,6 @@ body {
 
 .page-content-item h1 {
 
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     position: relative;
     display: inline;
@@ -43,9 +45,25 @@ body {
 
 #person-desc {
 
-    font-size: 10px;
+    font-size: 14px;
     margin: 5px;
     margin-top: 0;
-    font-family: Arial, Helvetica, sans-serif;
 
+}
+
+.person-info {
+    font-size: 12px;
+    margin: 0;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 7px;
+    background: rgb(222, 222, 222);
+}
+
+#name {
+    display: inline-block;
+}
+
+.person-info strong {
+    display: inline-block;
 }

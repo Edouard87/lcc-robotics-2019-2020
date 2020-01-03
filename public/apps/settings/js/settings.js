@@ -1,18 +1,16 @@
 var settings = [
     {
-        label: "Language",
+        label_en: "Language",
+        label_fr: "Langue du Système",
         name: "lang",
-        description: "Change the system language. Supported languages are French and English"
-    },
-    {
-        label: "Language",
-        name: "lang",
-        description: "Change the system language. Supported languages are French and English"
+        description_en: "Change the system language. Supported languages are French and English",
+        description_fr: "Changez la langue du système d&#39exploitation. Les langues supportés sont le Français et l&#39Anglais"
     }
 ]
 
 for (var i = 0; i < settings.length; i++) {
-
+    settings[i].label = settings[i]["label_" + lang]
+    settings[i].description = settings[i]["description_" + lang]
     $(".settings-selector-options").append("<h1 class='settings-option' name='" + settings[i].name + "' description ='" + settings[i].description + "'>" + settings[i].label + "</h1>")
 
 }

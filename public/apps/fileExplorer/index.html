@@ -7,17 +7,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/load-texts.js"></script>
+    <script src="js/load-students.js"></script>
     <title>People</title>
 </head>
 <body></body>
     <!-- Hight: 283px -->
     <!-- Width: 598px-->
-
-    <!-- <div class="top-bar">
-
-    </div> -->
     <div class="top-button-bar">
-        <img src="/../../imgs/hard-disk-icon.png" alt=""><p><label id="items"></label> items, 1.5GB available on hard disk</p>
+        <img src="/../../imgs/hard-disk-icon.png" alt="">
+        <p>
+          <en style="display: none"><label class="items"></label> items, 1.5GB available on hard disk</en>
+          <fr style="display: none"><label class="items"></label> itèmes, 1.5Go disponibles sur ce disque</fr>
+        </p>
     </div>
     <div class="top-map">
         <div class="sized-big" id="col-1" style="display: none">
@@ -54,6 +56,8 @@
         <div class="scrollbar sized-small"></div>
     </div>
     <script src="js/load-data.js">
+    </script>
+    <script src="/../../js/set-lang.js">
     </script>
 </body>
 </html>

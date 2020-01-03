@@ -1,5 +1,5 @@
 var lang = parent.getCookie("lang","en")
-console.log(lang)
+console.log(lang);
 
 $(".settings-option[lang='" + lang + "']").trigger("click");
 
@@ -12,8 +12,8 @@ $("#change-lang").on("click", function () {
     parent.createWindow({
       page_index: "/apps/lang/success.html",
       window_name: "Restart Required",
-      width: 270,
-      height: 140
+      width: 290,
+      height: 180
     })
 });
 

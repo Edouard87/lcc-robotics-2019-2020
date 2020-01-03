@@ -6,7 +6,8 @@ var menuItems = [
         label_en: "acceuil",
         submenus: [
             {
-                label: "About this School",
+                label_en: "About this School",
+                label_fr: "Notre École",
                 app: "aboutSchool",
                 window_height: 280,
                 window_width: 430
