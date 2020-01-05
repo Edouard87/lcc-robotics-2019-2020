@@ -38,8 +38,6 @@ $(".button-right-wrapper").on("click", function() {
         window_name: $(this).attr("label"),
         width: 290.469,
         height: 410
-
-        
     })
     
     console.log($(this).attr("name"))

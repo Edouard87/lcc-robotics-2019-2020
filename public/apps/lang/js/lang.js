@@ -18,5 +18,5 @@ $("#change-lang").on("click", function () {
 });
 
 $("#reload-button").on("click", function() {
-    parent.location.reload();
+    parent.clearSession();
 });

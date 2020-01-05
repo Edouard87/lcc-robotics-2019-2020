@@ -1,14 +1,21 @@
 var defaultBackground = $(".settings-option").css("background")
 var defaultBorder = $(".settings-option").css("border")
 
-$(".settings-option").on('click', function () {
+function applyEventListeners() {
 
-  $(".description-wrapper").css("display", "block");
+  $(".settings-option").on('click', function () {
 
-  $(".settings-option").css("background", defaultBackground);
-  $(".settings-option").css("border", defaultBorder);
+    $(".description-wrapper").css("display", "block");
 
-  $(this).css("background", "rgb(204,205,251)");
-  $(this).css("border", "1px solid rgb(95,96,110)");
+    $(".settings-option").css("background", "transparent");
+    $(".settings-option").css("border", "1px solid white");
 
-});
+    $(this).css("background", "rgb(204,205,251)");
+    $(this).css("border", "1px solid rgb(95,96,110)");
+
+  });
+
+}
+
+applyEventListeners();
+

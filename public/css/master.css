@@ -8,9 +8,6 @@ body {
 
 }
 
-.draggable {
-
-  position: absolute;
-
+body, html, .menu-bar {
+  min-width: 500px;
 }
-

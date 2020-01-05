@@ -7,11 +7,12 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const fs = require("fs")
 
-const routes = require('./routes/index');
-const users = require('./routes/user');
+const jwt = require("jsonwebtoken");
 
 const app = express();
-const store = require("data-store")("users");
+const store = require("data-store")("users", {
+  cwd: 'users'
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -23,18 +24,94 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static("public"));
 
+function authenticate(req, res, next) {
+  const token = req.cookies.auth
+  if (token == undefined) {
+    res.redirect("/")
+  } else {
+    try {
+      const result = jwt.verify(token, 'shhhhh');
+      req.decoded = result;
+      next();
+    } catch(err) {
+      res.redirect("/")
+    }
+  }
+}
+
+app.get("/secretroute", authenticate, function(req, res) {
+  res.send(req.decoded.user);
+})
+
 app.get("/", function(req, res) {
 
-  res.render("welcome")
+  const token = req.cookies.auth
+  if (token == undefined) {
+    return res.render("welcome")
+  } else {
+    try {
+      const result = jwt.verify(token, 'shhhhh');
+      req.decoded = result;
+      return res.redirect("/desktop");
+    } catch (err) {
+      return res.render("welcome")
+    }
+  }
 
 });
 
-app.get("/jobs/all/", function (req, res) {
+app.get("/getdata", authenticate, function(req, res) {
+  res.send(store.get(req.decoded.user).userdata)
+});
 
-  var files = fs.readdirSync(__dirname + "/public/apps/students/data/")
-  res.send(files);
+app.post("/save/:target", authenticate, function(req, res) {
+  store.set(req.decoded.user + ".userdata." + req.params.target, req.body);
+  console.log(store.get(req.decoded.user).userdata.windows);
+  res.end();
+  // console.log(JSON.parse(store.get(req.decoded.user).userdata.icons))
+});
+
+app.get("/desktop", authenticate, function(req, res) {
+  res.render("desktop");
+})
+
+app.post("/login", function(req, res) {
+
+  if (store.has(req.body.username)) {
+    if (req.body.password == store.get(req.body.username).password) {
+      const token = jwt.sign({
+        user: req.body.username
+      }, 'shhhhh');
+      res.cookie("auth",token);
+      return res.send("logged_in")
+    } else {
+      return res.send("bad_pass")
+    }
+  } else {
+    return res.send("no_user")
+  }
 
 });
+
+function isCorrectPassword(password) {
+  return /^\d+$/.test(password)
+}
+
+app.post("/register", function(req, res) {
+  if (store.has(req.body.username)) {
+    return res.send("user_exists");
+  } else if (!isCorrectPassword(req.body.password)) {
+    return res.send("format_err");
+  } else if (req.body.username == "") {
+    return res.send("no_username")
+  } else {
+    store.set(req.body.username, {
+      username: req.body.username,
+      password: req.body.password
+    })
+    return res.send("user_created")
+  }
+})
 
 
 app.listen(3000, function() {

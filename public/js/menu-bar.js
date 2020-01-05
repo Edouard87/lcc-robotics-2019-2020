@@ -11,6 +11,13 @@ var menuItems = [
                 app: "aboutSchool",
                 window_height: 280,
                 window_width: 430
+            },
+            {
+              label_en: "Logout",
+              label_fr: "Fermer la session",
+              app: "logout",
+              window_height: 180,
+              window_width: 290 
             }
         ]
     },
@@ -23,8 +30,21 @@ var menuItems = [
         app: "settings",
         window_height: 450,
         window_width: 570
-      }
-    ]
+      },
+      {
+        label_en: "App Installer",
+        label_fr: "Installer des Applications",
+        app: "installer",
+        window_height: 450,
+        window_width: 570
+      },
+    {
+      label_en: "App Uninstaller",
+      label_fr: "Désinstaller des applications",
+      app: "uninstaller",
+      window_height: 410,
+      window_width: 290.469
+    }]
     },
     {
       label_en: "Help",
@@ -32,7 +52,7 @@ var menuItems = [
       submenus: [{
         label_en: "What is this?",
         label_fr: "Quest-ce que c'est?",
-        app: "info",
+        app: "aboutApp",
         window_height: 280,
         window_width: 430
       }]
@@ -85,8 +105,9 @@ $(".dropdown-menu-item").on('click', function () {
     page_index: "/apps/" + $(this).attr("app") + "/index.html",
     window_name: $(this).attr("app_name"),
     width: $(this).attr("window_width"),
-    height: $(this).attr("window_height")
-  })
+    height: $(this).attr("window_height"),
+    app: $(this).attr("app")
+  });
 
 });
 
@@ -95,3 +116,23 @@ $(".menu-button").on("click", function () {
     $(".dropdown-menu").css("left", $(this).offset().left)
 
 })
+
+function recalculateMenuBar() {
+  var totalWidth
+  var widths = [];
+  $(".window").each(function () {
+    totalWidth = $(this).offset().left + $(this).outerWidth(true);
+    widths.push(totalWidth);
+  });
+  var max = widths.reduce(function (a, b) {
+    return Math.max(a, b);
+  });
+  if (max > innerWidth) {
+    $(".menu-bar-right-buttons").css("display", "none");
+    $(".menu-bar").css("width", max + "px");
+  } else {
+    $(".menu-bar-right-buttons").css("display", "block");
+    $(".menu-bar").css("width", "100%");
+  }
+  
+}

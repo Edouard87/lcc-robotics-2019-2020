@@ -13,186 +13,188 @@ $(document).on("click", function() {
         $(".menu-button").css("color", "black");
     }
 
-    console.log()
-
 })
 
-$.ajax({
-  url: "/templates/window.mustache",
-  method: "get",
-  success: function (windowTemplate) {
+function loadIcons(icons) {
 
-    $.ajax({
-        url: "/templates/desktop-icon.mustache",
-        method: "get",
-        success: function(desktopIconTemplate) {
+    try {
 
-            icons = [{
-              app: "fileExplorer",
-              app_name_en: "List of Participating Students",
-              app_name_fr: "Liste des Étudiants Participant",
-              top: "350px",
-              left: "10px",
-              image: "/imgs/hard-disk-icon.png",
-              meta_1: "students",
-              window_height: 350, 
-              window_width: 600
-            },
-        {
-          app: "fileExplorer",
-          app_name_en: "Texts",
-          app_name_fr: "Publications",
-          top: "350px",
-          left: "100px",
-          image: "/imgs/hard-disk-icon.png",
-          meta_1: "texts",
-          window_height: 350,
-          window_width: 600
-        }]
+        for (var i = 0; i < icons.length; i++) {
 
-            for (var i = 0; i < icons.length; i++) {
-
-                icons[i].iid = i;
-
-                icons[i].app_name = icons[i]["app_name_" + lang]
-
-                $(".desktop").append(Mustache.to_html(desktopIconTemplate,icons[i]));
-                dragElement(document.getElementById("icon-" + i));
-                
-                $("#icon-" + i).on("mousedown", function() {
-                    
-                    $(".desktop-icon h1").css("background","white")
-                    $(".desktop-icon h1").css("color","black")
-
-                    $(this).find("h1").css("background","rgb(1,3,0)");
-                    $(this).find("h1").css("color", "white");
-
-                });
-                
-                $("#icon-" + i).on("dblclick", function() {
-
-                    createWindow({
-                      page_index: "/apps/" + $(this).attr("app") + "/index.html",
-                      window_name: $(this).attr("app_name"),
-                      width: $(this).attr("window_width"),
-                      height: $(this).attr("window_height"),
-                      meta_1: $(this).attr("meta_1")
-                    })
-
-                });
-
-            }
+          createIcon(icons[i]);
 
         }
-    })
 
-  }
-});
+    } catch(err) {
 
-function createWindow(meta) {
+        console.log("err!")
+
+    }
+
+    
+
+}
+
+function createIcon(meta) {
 
     $.ajax({
-      url: "/templates/window.mustache",
+      url: "/templates/desktop-icon.mustache",
       method: "get",
-      success: function (windowTemplate) {
+      success: function (desktopIconTemplate) {
 
-            var wids = []
-            var wid;
-            for (var a = 0; a < $(".window").length; a++) {
-              wids.push($(".window")[a].getAttribute("wid"));
-            }
-            if (wids.length == 0) {
-                wid = 0;
-            } else {
-                wid = parseInt(wids.sort()[wids.length - 1], 10) + 1;
-            }
-            meta.wid = wid;
-            meta.content_height = meta.height-17;
-            // console.log(meta)
-            $(".desktop").append(Mustache.to_html(windowTemplate,meta));
-            dragElement(document.querySelector("[wid='" + wid + "']"));
-            updateCloseButton();
-            console.log("[wid='" + wid + "']");
-            $("[wid='" + wid + "']").css("z-index",51)
-            $("[wid='" + wid + "']").on("mousedown", function() {
-                $(".window").css("z-index",1);
-                $(this).css("z-index",50);
-            })
+        var iids = []
+        var iid;
+        for (var a = 0; a < $(".desktop-icon").length; a++) {
+          iids.push($(".desktop-icon")[a].getAttribute("iid"));
+        }
+        if (iids.length == 0) {
+          iid = 0;
+        } else {
+          iid = parseInt(iids.sort()[iids.length - 1], 10) + 1;
+        }
+
+        meta.iid = iid;
+
+        meta.app_name = meta["app_name_" + lang]
+
+        $(".desktop").append(Mustache.to_html(desktopIconTemplate, meta));
+        dragElement(document.getElementById("icon-" + iid));
+
+        $("#icon-" + iid).on("mousedown", function () {
+
+          $(".desktop-icon h1").css("background", "white")
+          $(".desktop-icon h1").css("color", "black")
+
+          $(this).find("h1").css("background", "rgb(1,3,0)");
+          $(this).find("h1").css("color", "white");
+
+        });
+
+        $("#icon-" + iid).on("dblclick", function () {
+
+          createWindow({
+            page_index: "/apps/" + $(this).attr("app") + "/index.html",
+            window_name: $(this).attr("app_name"),
+            width: $(this).attr("window_width"),
+            height: $(this).attr("window_height"),
+            meta_1: $(this).attr("meta_1"),
+            app: $(this).attr("app")
+          });
+
+        });
+
+        console.log("attaching...")
+
+        $("#icon-" + iid).on("mouseup", function () {
+
+          saveIcons()
+          console.log("saving...")
+
+        });
+
 
       }
-
-    });
-
+    })
 }
 
-function updateCloseButton() {
-
-    $(".close").on("click", function() {
-
-        $("[wid='" + $(this).attr("delTarget") + "']").remove();
-
-    });
-
-};
-
-//Make the DIV element draggagle:
-
-function dragElement(elmnt) {
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        console.log(elmnt.id + "header")
-        /* if present, the header is where you move the DIV from:*/
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        /* otherwise, move the DIV from anywhere inside the DIV:*/
-        elmnt.onmousedown = dragMouseDown;
+$.ajax({
+    url: "/getdata",
+    method: "get",
+    success: function(userdata) {
+        console.log(userdata);
+        loadIcons(userdata.icons)
+        loadWindows(userdata.windows);
     }
+});
 
-    function dragMouseDown(e) {
-        $(".window").css("z-index", "1");
-        e = e || window.event;
-        e.preventDefault();
-        console.log(e)
-        // e.style.zIndex = 99;
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // console.log(pos4);
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-    }
-
-    function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        var viewportWidth = Math.max(document.documentElement.clientWidth, window.innerWidth || 0)
-        var viewportHeight = Math.max(document.documentElement.clientHeight, window.innerHeight || 0)
-        // set the element's new position amd apply restrictions
-        if (elmnt.offsetTop <= 21) {
-            elmnt.style.top = (elmnt.offsetTop + 1) + "px";
-        } else if (elmnt.offsetLeft <= 0) {
-            elmnt.style.left = (elmnt.offsetLeft + 1) + "px";
-        } else if ((elmnt.offsetLeft + elmnt.offsetWidth) >= viewportWidth) {
-            elmnt.style.left = (elmnt.offsetLeft - 1) + "px";
-            // console.log()
-        } else if ((elmnt.offsetTop + elmnt.offsetHeight) >= viewportHeight) {
-            elmnt.style.top = (elmnt.offsetTop - 1) + "px";     
-        } else {
-            elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-            elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+function loadWindows(windows) {
+    try {
+        for (var i = 0; i < windows.length; i++) {
+          createWindow(windows[i]);
         }
-        
+    } catch(err) {
+        console.log("err!")
     }
-
-    function closeDragElement() {
-        /* stop moving when mouse button is released:*/
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
+    console.log("calc...")
 }
+
+function saveIcons() {
+    var icons = [];
+    var attributes;
+    $(".desktop-icon").each(function() {
+        icons.push({
+          app: $(this).attr("app"),
+          app_name_en: $(this).attr("app_name_en"),
+          app_name_fr: $(this).attr("app_name_en"),
+          top: $(this).css("top"),
+          left: $(this).css("left"),
+          image: $(this).attr("image"),
+          meta_1: $(this).attr("meta_1"),
+          window_height: $(this).attr("window_height"),
+          window_width: $(this).attr("window_width")
+        });
+    })
+    $.ajax({
+        url: "/save/icons",
+        method: "post",
+        contentType: 'application/json',
+        data: JSON.stringify(icons),
+        dataType: 'json'
+    })
+}
+
+function saveWindows() {
+    var windows = []
+    $(".window").each(function() {
+        windows.push({
+            page_index: $(this).attr("page_index"),
+            window_name: $(this).attr("window_name"),
+            top: $(this).css("top").split("px").shift(),
+            left: $(this).css("left").split("px").shift(),
+            width: $(this).css("width").split("px").shift(),
+            height: $(this).css("height").split("px").shift(),
+            meta_1: $(this).attr("meta_1"),
+            meta_2: $(this).attr("meta_2"),
+            meta_3: $(this).attr("meta_3"),
+            meta_4: $(this).attr("meta_4")
+        })
+    });
+    $.ajax({
+      url: "/save/windows",
+      method: "post",
+      contentType: 'application/json',
+      data: JSON.stringify(windows),
+      dataType: 'json'
+    })
+    console.log(windows);
+}
+
+function updateIconSpawnArea() {
+
+    $(".app-spawn-area").remove();
+    $(".desktop").append(`<div class="app-spawn-area" style="z-index: 1; top: 30px; left: 0; position: absolute; width: ${window.innerWidth-200}px; height: ${window.innerHeight-200}px"></div>`)
+
+}
+updateIconSpawnArea()
+
+// make sure no apps ever go offscreen
+
+function updateIconPos() {
+    $(".desktop-icon").each(function () {
+      if ((parseInt($(this).css("left"),10) + parseInt($(this).css("width"),10)) >= window.innerWidth) {
+        console.log("BAD!") 
+        console.log(getRandomVert())
+        $(this).css("left", getRandomHoriz())
+      }
+      if ((parseInt($(this).css("top"), 10) + parseInt($(this).css("height"), 10)) >= window.innerHeight) {
+        console.log("BAD!")
+        $(this).css("top", getRandomVert())
+      }
+    });
+}
+
+window.addEventListener('resize', function() {
+    updateIconSpawnArea();
+    updateIconPos();
+    saveIcons();
+});
