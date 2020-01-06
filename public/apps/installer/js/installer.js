@@ -18,6 +18,8 @@ for (var i = 0; i < apps.length; i++) {
     $(".settings-selector-options").append(`<h1 class='settings-option' app_name_en=${apps[i].app_name_en} app_name_fr=${apps[i].app_name_fr} window_width="${apps[i].window_width}" window_height="${apps[i].window_height}" meta_1="${apps[i].meta_1}" img="${apps[i].img}" app='${apps[i].app}' description ='${apps[i].description}'>${apps[i].name}</h1>`)
 }
 
+applyEventListeners()
+
 var defaultBackground = $(".settings-option").css("background")
 var defaultBorder = $(".settings-option").css("border")
 
@@ -49,5 +51,4 @@ $(".button-right-wrapper").on("click", function() {
         window_height: $(".selected").attr("window_height"),
         window_width: $(".selected").attr("window_width")
     })
-    parent.saveIcons();
 })

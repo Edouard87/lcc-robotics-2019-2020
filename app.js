@@ -39,10 +39,6 @@ function authenticate(req, res, next) {
   }
 }
 
-app.get("/secretroute", authenticate, function(req, res) {
-  res.send(req.decoded.user);
-})
-
 app.get("/", function(req, res) {
 
   const token = req.cookies.auth
@@ -66,14 +62,19 @@ app.get("/getdata", authenticate, function(req, res) {
 
 app.post("/save/:target", authenticate, function(req, res) {
   store.set(req.decoded.user + ".userdata." + req.params.target, req.body);
-  console.log(store.get(req.decoded.user).userdata.windows);
+  if (req.params.target == "settings") {
+    console.log(req.body)
+  }
   res.end();
-  // console.log(JSON.parse(store.get(req.decoded.user).userdata.icons))
 });
 
 app.get("/desktop", authenticate, function(req, res) {
   res.render("desktop");
 })
+
+app.get("/secretroute", authenticate, function(req, res) {
+  res.send(store.get(req.decoded.user).userdata.settings.background)
+});
 
 app.post("/login", function(req, res) {
 

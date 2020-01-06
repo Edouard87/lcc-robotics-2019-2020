@@ -1,6 +1,12 @@
 var lang = parent.getCookie("lang","en")
 console.log(lang);
 
+try {
+    applyEventListeners()
+} catch(err) {
+
+}
+
 $(".settings-option[lang='" + lang + "']").trigger("click");
 
 $(".settings-option").on("click", function() {

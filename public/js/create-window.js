@@ -122,6 +122,7 @@ function dragElement(elmnt) {
 }
 
 function clearSession() {
+  console.log("clearing...")
     $(".window").each(function() {
         $(this).remove();
     });

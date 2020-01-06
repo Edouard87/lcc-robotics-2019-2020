@@ -91,7 +91,8 @@ function createIcon(meta) {
           console.log("saving...")
 
         });
-
+        
+        saveIcons();
 
       }
     })
@@ -104,6 +105,9 @@ $.ajax({
         console.log(userdata);
         loadIcons(userdata.icons)
         loadWindows(userdata.windows);
+        console.log(userdata.background.image)
+        $("body").css("background-image", "url('" + userdata.background.image + "')")
+        $("body").attr("background-image", userdata.background.image)
     }
 });
 

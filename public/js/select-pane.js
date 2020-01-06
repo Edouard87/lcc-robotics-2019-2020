@@ -17,5 +17,5 @@ function applyEventListeners() {
 
 }
 
-applyEventListeners();
+// applyEventListeners();
 
