@@ -1,4 +1,3 @@
-console.log("found!")
 function getCookie(cookieName, def) {
     var cookie = Cookies.get(cookieName);
     console.log(cookie)
@@ -13,3 +12,4 @@ function getCookie(cookieName, def) {
 }
 
 var lang = getCookie("lang", "en");
+console.log(lang)

@@ -73,8 +73,13 @@ app.get("/desktop", authenticate, function(req, res) {
 })
 
 app.get("/secretroute", authenticate, function(req, res) {
-  res.send(store.get(req.decoded.user).userdata.settings.background)
+  res.send(store.get(req.decoded.user).userdata.background)
 });
+
+app.get("/wipe", function(req, res) {
+  store.clear();
+  res.send("done!")
+})
 
 app.post("/login", function(req, res) {
 
@@ -108,7 +113,12 @@ app.post("/register", function(req, res) {
   } else {
     store.set(req.body.username, {
       username: req.body.username,
-      password: req.body.password
+      password: req.body.password,
+      userdata: {
+        background: {
+          image: "/imgs/backgrounds/blue.png"
+        }
+      }
     })
     return res.send("user_created")
   }

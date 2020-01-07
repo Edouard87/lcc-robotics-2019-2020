@@ -31,6 +31,17 @@
     <script src="/js/ds.js"></script>
     <script src="/js/create-window.js"></script>
     <script src="/js/test-window.js"></script>
+    <script>
+    
+      $("body").on("logout", function(e, data) {
+        parent.$(".window[wid='" + data.wid + "']").remove();
+        saveWindows();
+        Cookies.remove("auth");
+        location.reload();
+        // location.reload();
+      });
+    
+    </script>
     
 
   </body>

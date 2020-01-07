@@ -16,7 +16,7 @@
     <div class="desktop">
         <div class="welcome-box password-box">
           <div class="password-box-content">
-            <img id="header-image" src="imgs/loginHeader_en.png" alt="">
+              <img id="header-image" src="imgs/loginHeader_en.png" alt="">
             <div class="login">
               <div class="fields-wrapper">
                 <form id="user-form" method="post" action="">
@@ -105,16 +105,18 @@
                 app: "welcome"
             })
         }
-        $("#header-image").attr("src","imgs/loginHeader_" + lang + ".png")
+      $("#header-image").attr("src","imgs/loginHeader_" + lang + ".png")
       $("#change-lang").on('click', function () {
           console.log($("en").css("display"))
         if ($("en").css("display") == "block") {
           Cookies.set("lang", "fr");
+          
         } else {
           Cookies.set("lang", "en");
         }
         location.reload();
       });
+      // console.log(lang)
     </script>
 </body>
 </html>

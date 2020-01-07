@@ -9,13 +9,24 @@ var apps = [
         window_width: 600,
         description_en: "Browse the texts written by the robotics team",
         description_fr: "Parcourer les textes écrits par les membres de l&#39équipe"
+    },
+    {
+        app_name_en: "List of Participating Students",
+        app_name_fr: "Liste des étudiants participants",
+        app: "fileExplorer",
+        img: "/imgs/hard-disk-icon.png",
+        meta_1: "students",
+        window_height: 350,
+        window_width: 600,
+        description_en: "Browse a list of the students involved in the robotics team, organised by contribution.",
+        description_fr: "Parcourer une liste des membres de l&#39équipe de robotique d'LCC. Cette dernière est organisée par contribution."
     }
 ]
 
 for (var i = 0; i < apps.length; i++) {
     apps[i].name = apps[i]["app_name_" + lang]
     apps[i].description = apps[i]["description_" + lang]
-    $(".settings-selector-options").append(`<h1 class='settings-option' app_name_en=${apps[i].app_name_en} app_name_fr=${apps[i].app_name_fr} window_width="${apps[i].window_width}" window_height="${apps[i].window_height}" meta_1="${apps[i].meta_1}" img="${apps[i].img}" app='${apps[i].app}' description ='${apps[i].description}'>${apps[i].name}</h1>`)
+    $(".settings-selector-options").append(`<h1 class='settings-option' app_name_en="${apps[i].app_name_en}" app_name_fr="${apps[i].app_name_fr}" window_width="${apps[i].window_width}" window_height="${apps[i].window_height}" meta_1="${apps[i].meta_1}" img="${apps[i].img}" app='${apps[i].app}' description ='${apps[i].description}'>${apps[i].name}</h1>`)
 }
 
 applyEventListeners()
@@ -26,7 +37,7 @@ var defaultBorder = $(".settings-option").css("border")
 $(".settings-option").on('click', function() {
 
     $(".settings-option").removeClass("selected")
-    $(".settings-option").addClass("selected")
+    $(this).addClass("selected")
 
     $(".header-block h1").html($(this).html())
     $(".description-items p").html($(this).attr("description"))

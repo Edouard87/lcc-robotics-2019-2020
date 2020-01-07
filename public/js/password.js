@@ -1,5 +1,7 @@
+// console.log(lang)
+
 var window_name;
-if (lang = "fr") {
+if (lang == "fr") {
   window_name = "Échec"
 } else {
   window_name = "Error"

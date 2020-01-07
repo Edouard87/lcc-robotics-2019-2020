@@ -23,6 +23,7 @@ var selectedBackground = parent.$("body").attr("background-image")
 console.log(selectedBackground)
 
 $(".settings-option[image='" + selectedBackground + "']").trigger("click");
+$(".desktop-sample").attr("src", parent.$("body").css("background-image").replace('url(', '').replace(')', '').replace(/\"/gi, ""));
 
 $(".settings-option").on('click', function() {
 

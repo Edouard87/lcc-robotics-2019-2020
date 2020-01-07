@@ -51,7 +51,7 @@ border-bottom: none !important;
     font-size: 17px;
     margin: 0;
     margin-left: 10px;
-    line-height: 50px;
+    /* line-height: 50px; */
     display: inline-block;
 
 }
@@ -59,6 +59,7 @@ border-bottom: none !important;
 .header-block {
 
     display: flex;
+    align-items: center;
 
 }
 

@@ -1,5 +1,5 @@
 // Only make French text visible
-
+console.log(lang)
 $("fr").each(function() {
     $(this).css("display","none")
 })
