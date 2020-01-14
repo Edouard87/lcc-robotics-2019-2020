@@ -9,9 +9,7 @@ const fs = require("fs")
 const jwt = require("jsonwebtoken");
 
 const app = express();
-const store = require("data-store")("users", {
-  cwd: 'users'
-});
+const store = require("data-store")("/users");
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
