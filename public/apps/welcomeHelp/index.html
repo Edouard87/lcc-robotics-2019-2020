@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/../../components/jquery/dist/jquery.min.js"></script>
+    <script src="/components/mustache/mustache.min.js"></script>
+    <script src="/components/js-cookie/src/js.cookie.js"></script>
+    <script src="/components/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- <link rel="stylesheet" href="css/master.css"> -->
+    <link rel="stylesheet" href="/../../css/basic-style.css">
+    <link rel="stylesheet" href="/../../css/button.css">
+    <link rel="stylesheet" href="/../../css/content-control.css">
+    <link rel="stylesheet" href="/components/malihu-custom-scrollbar/jquery.mCustomScrollbar.css">
+    <title>Document</title>
+</head>
+<body>
+  <div class="container-scroll">
+     <en>
+       <h1 class="large-header">Welcome!</h1>
+       <h2>This is the LCC Robotics Website for the Flip competition</h2>
+       <p>Yes, the Lower Canada College team <em>is</em> centered around the theme of Jurassic Park, but the website
+         team thought simply making a regular website would be quite boaring––not to mention the fact that it could be
+         constructed using regular website builders such as Word Press!</p>
+       <h4>We wanted to make something that would truly fascinare you, the users.</h4>
+       <p>The inspiration for the website comes from the following scene, from the original Jurassic Park movie.</p>
+       <p class="disclaimer">Please note that the below video does not belong to Lower Canada College and has been
+         uploaded by a third party who is not affiliated with Lower Canada College.</p>
+       <h2>"It's a unix system, I know this!"</h2>
+    </en>
+         <iframe width="560" height="315" src="https://www.youtube.com/embed/cnVJtzeI1CM" frameborder="0"
+         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <en>
+      <p>Here, the main character logs into an IRIX workstation (made by the Silicon Graphics Corporation) and secures the entire building using a very old app called File System Viewer, saving them the group from the dinausaurs</p>
+      <h1 class="large-header">IRIX</h1>
+      <h2>Images of the operating system used in the film</h2>
+      <p>IRIX was an extremely advanced operating system for it's time. It was meant to be used for complex graphic rendering.</p>
+      <p class="disclaimer">Please note that none of these images belong to or are affiliated with Lower Canada College.</p>
+      <div class="images-wrapper">
+        <img src="/imgs/irix-1.png" alt="">
+        <img src="/imgs/irix-2.png" alt="">
+      </div>
+      <p>Today, because of the incredible developpement of technology. IRIX would most likely be viewed as an extyremely archaic piece of equipement. Your computer is <em>much</em> more powerful than any IRIX worsktation.</p>    
+      <h4>We wanted to theme the website off of this operating system.</h4>
+      <div class="emphasis-div">
+        <h1 class="large-header">Getting started</h1>
+        <p>To use this wesbite, an account must be created. This account will be used to store infromation
+          about your activity on the website. This is <strong>not</strong> for advertising purposes, but rather to
+          <em>enhance</em> your experience.</p>
+        <h2>Please take careful note of the following</h2>
+        <ul>
+          <li>Your password can only be numeric.</li>
+          <li>There is no way to recover a lost password.</li>
+          <li>This app is also <strong>not particularily secure</strong>. It is thus not recommended to use a
+            password that may also be used by other important services, such as banking institutions, for instance.</li>
+          <li>This app requires <strong>javascript and cookies</strong> to be enabled to work properly.</li>
+          <li>This app has been tested to be compatible with the <strong>newest version</strong> of the following browsers:</li>
+            <ul>
+              <li>Google Chrome</li>
+              <li>Firefox</li>
+              <li>Microsoft Edge</li>
+              <li>Safari</li>
+            </ul>
+          </ul>
+        <p>To create a new account, start by pressing <strong>close</strong> to close this window. Then, enter
+          a username and password and press <strong>Register</strong>.</p>
+        <p>Pressing Close will stop cause this message to <strong>never</strong> appear again.</p>
+      </div>
+      </en>
+     
+     <fr>
+       <h1>Bienvenue!<h2>
+           <h2>Veuillez entrer votre nom d'utilisateur ainsi que votre mot de passe. Ensuite, appuyez sur <strong>Ouvrir
+               une session</strong></h2>
+           <h2>Pour créer un compte, enter un nom d'utilisateur ainsi qu'un mot de passe et appuyez sur
+             <strong>S'enregistrer</strong></h2>
+           <h2>Notez que votre mot de passe <strong>ne peut pas contenir de lettres</strong>. Il est également
+             impossible de retrouver un mot de passe oublié</h2>
+     </fr>
+  </div>
+     <div id="close-button" style="bottom: 20px; right: 20px;" class="button-right-wrapper positioned">
+       <div class="button-right">
+         <div class="button-content">
+           <h1>
+             <en>Close</en>
+             <fr>Fermer</fr>
+           </h1>
+         </div>
+       </div>
+     </div>
+     <div id="lang-change" style="bottom: 20px; left: 20px;" class="button-right-wrapper positioned">
+       <div class="button-right">
+         <div class="button-content">
+           <h1>
+             <en>Français</en>
+             <fr>English</fr>
+           </h1>
+         </div>
+       </div>
+     </div>
+    <script src="/../../js/cookies.js"></script>
+    <script src="/../../js/set-lang.js"></script>
+    <script>
+        
+        (function($){
+          $(window).on("load",function(){
+              $(".container-scroll").mCustomScrollbar({
+                theme: "3d-thick-dark"
+              });
+          });
+        })(jQuery);
+
+        if (window.frameElement.getAttribute("meta_2") != "spawned") {
+          $("#lang-change").css("display","none")
+        }
+
+        $("#close-button").on("click", function() {
+            Cookies.set("seenWelcome",true);
+            parent.$(".window[app='welcome']").remove();
+        });
+        $("#lang-change").on("click", function() {
+            if ($("en").css("display") == "block") {
+                Cookies.set("lang", "fr");
+            } else {
+                Cookies.set("lang", "en");
+            }
+                parent.location.reload();
+        });
+        $("body").css("height", window.frameElement.offsetHeight)
+        
+    </script>
+</body>
+</html>

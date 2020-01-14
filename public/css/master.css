@@ -1,0 +1,13 @@
+body {
+
+  /* background-image: url("/imgs/backgrounds/macos.png"); */
+  background-size: 150px;
+    font-family: Arial,
+    Helvetica,
+    sans-serif;
+
+}
+
+body, html, .menu-bar {
+  min-width: 500px;
+}

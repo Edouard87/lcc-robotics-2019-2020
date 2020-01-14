@@ -1,0 +1,12 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.positioned {
+    left: 20px;
+    bottom: 10px;
+}
+
+#change-lang {
+    width: 120px !important;
+}

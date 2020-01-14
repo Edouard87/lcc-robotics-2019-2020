@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../../components/mustache/mustache.min.js"></script>
+    <script src="../../components/jquery/dist/jquery.min.js"></script>
+    <script src="/../../components/js-cookie/src/js.cookie.js"></script>
+    <link rel="stylesheet" href="styles/person.css">
+    <link rel="stylesheet" href="/../../css/sample.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="page-content">
+        <div class="page-content-item sample">
+            <div class="item-border">
+                <h1 class="border-header">
+                    <en display="inline" style="position: relative">Sample</en>
+                    <fr display="inline" style="position: relative">Image</fr>
+                </h1>
+                <img src="" alt="">
+            </div>
+        </div>
+        <div class="page-content-item data">
+            <div class="item-border">
+              <h1 class="border-header">
+                <en display="inline" style="position: relative">Properties</en>
+                <fr display="inline" style="position: relative">Information</fr>
+              </h1>
+              <p class="person-info"><strong>
+                  <students>
+                    <en>Name: </en>
+                    <fr>Nom: </fr>
+                  </students>
+                  <texts>
+                    <en>Title: </en>
+                    <fr>Titre: </fr>
+                  </texts>
+                </strong> <span id="name"></span></p>
+              <p class="person-info" id="contributions-wrapper">
+                  <strong> 
+                      <students>
+                          <en>Contributions: </en>
+                          <fr>Contributions: </fr>
+                      </students>
+                  </strong> <span id="contributions"></span></p>
+            </div>
+            <div class="item-border">
+                <h1 class="border-header">
+                    <en display="inline" style="position: relative">Publication</en>
+                    <fr display="inline" style="position: relative">Publication</fr>
+                </h1>
+              <p id="person-desc"></p>
+            </div>
+            
+            </div>
+    </div>
+    <script src="/../../js/cookies.js"></script>
+    <script src="/../../js/set-lang.js"></script>
+    <script src="js/load-person.js"></script>
+    
+</body>
+</html>

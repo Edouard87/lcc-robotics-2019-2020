@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/welcome.css">
+    <link rel="stylesheet" href="/css/windows.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/components/jquery/dist/jquery.min.js"></script>
+    <script src="/components/mustache/mustache.min.js"></script>
+    <script src="/components/js-cookie/src/js.cookie.js"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+    <div class="desktop">
+        <div class="welcome-box password-box">
+          <div class="password-box-content">
+              <img id="header-image" src="imgs/loginHeader_en.png" alt="">
+            <div class="login">
+              <div class="fields-wrapper">
+                <form id="user-form" method="post" action="">
+                <h1 class="localhost">
+                  <en>localhost</en>
+                  <fr>serveur local</fr>
+                </h1>
+                <div class="input-field">
+                    <label for="">
+                      <en display="inline">Name</en>
+                      <fr display="inline">Nom</fr>
+                    </label>
+                    <div class="field-wrapper">
+                      <input name="username" type="text">
+                    </div>
+                </div>
+                <div class="input-field">
+                    <label for="">
+                      <en display="inline">Password</en>
+                      <fr display="inline">Mot de passe</fr>
+                    </label>
+                    <div class="field-wrapper">
+                      <input name="password" type="password">
+                    </div>
+                  </div>
+                </form>
+                <div class="buttons-wrapper">
+                  <div id="login-button" class="action-button aligned-right">
+                    <div class="image-wrapper">
+                      <div class="inner-wrapper">
+                        <img src="imgs/houseIcon.png" alt="">
+                      </div>
+                    </div>
+                    <h1>
+                      <en>Login</en>
+                      <fr>Ouvrir une session</fr>
+                    </h1>
+                  </div>
+                  <div id="register-button" class="action-button aligned-left">
+                    <div class="image-wrapper">
+                      <div class="inner-wrapper">
+                        <img src="imgs/restartIcon.png" alt="">
+                      </div>
+                    </div>
+                    <h1>
+                      <en>Register</en>
+                      <fr>S'enregistrer</fr>
+                    </h1>
+                  </div>
+                  <div id="change-lang" style="margin-left: 20px" class="action-button aligned-left">
+                    <div class="image-wrapper">
+                      <div class="inner-wrapper">
+                        <img src="imgs/shutdownIcon.png" alt="">
+                      </div>
+                    </div>
+                    <h1>
+                      <en>Français</en>
+                      <fr>English</fr>
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="welcome-box status-box">
+          <iframe src="welcome_status_messages/welcome.html" frameborder="0"></iframe>
+        </div> -->
+    </div>
+    <script src="/../../js/cookies.js"></script>
+    <script src="/../../js/set-lang.js"></script>
+    <script src="js/create-window.js"></script>
+    <script src="js/password.js"></script>
+    <script>
+        var seenWelcome = Cookies.get("seenWelcome");
+        console.log(seenWelcome)
+        if (seenWelcome == undefined) {
+            console.log("loading welcome screen.");
+            var window_name;
+            if (lang == "en") {
+              window_name = "Welcome"
+            } else {
+              window_name = "Bienvenue"
+            }
+            parent.createWindow({
+                page_index: "/apps/welcomeHelp/index.html",
+                window_name: window_name,
+                width: window.innerWidth-100,
+                height: window.innerHeight-100,
+                top: 0,
+                left: 0,
+                app: "welcome",
+                meta_2: "spawned"
+            })
+        }
+      $("#header-image").attr("src","imgs/loginHeader_" + lang + ".png")
+      $("#change-lang").on('click', function () {
+          console.log($("en").css("display"))
+        if ($("en").css("display") == "block") {
+          Cookies.set("lang", "fr");
+          
+        } else {
+          Cookies.set("lang", "en");
+        }
+        location.reload();
+      });
+      // console.log(lang)
+    </script>
+</body>
+</html>

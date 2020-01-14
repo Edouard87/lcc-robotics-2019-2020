@@ -1,86 +1,132 @@
-
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const fs = require("fs")
 
-const routes = require('./routes/index');
-const users = require('./routes/user');
+const jwt = require("jsonwebtoken");
 
 const app = express();
-
-const env = process.env.NODE_ENV || 'development';
-app.locals.ENV = env;
-app.locals.ENV_DEVELOPMENT = env == 'development';
-
-// view engine setup
+const store = require("data-store")("users", {
+  cwd: 'users'
+});
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// app.use(favicon(__dirname + '/public/img/favicon.ico'));
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 app.use(cookieParser());
-app.use(express.static(__dirname));
+app.use(express.static("public"));
 
-// app.use('/', routes);
-// app.use('/users', users);
+function authenticate(req, res, next) {
+  const token = req.cookies.auth
+  if (token == undefined) {
+    res.redirect("/")
+  } else {
+    try {
+      const result = jwt.verify(token, 'shhhhh');
+      req.decoded = result;
+      next();
+    } catch(err) {
+      res.redirect("/")
+    }
+  }
+}
 
 app.get("/", function(req, res) {
 
-  res.render("desktop")
+  const token = req.cookies.auth
+  if (token == undefined) {
+    return res.render("welcome")
+  } else {
+    try {
+      const result = jwt.verify(token, 'shhhhh');
+      req.decoded = result;
+      return res.redirect("/desktop");
+    } catch (err) {
+      return res.render("welcome")
+    }
+  }
 
 });
 
-app.get("/app/:name", function(req, res) {
+app.get("/getdata", authenticate, function(req, res) {
+  res.send(store.get(req.decoded.user).userdata)
+});
 
-  res.render(__dirname + "/apps/" + req.params.name + "/index.ejs")
+app.post("/save/:target", authenticate, function(req, res) {
+  store.set(req.decoded.user + ".userdata." + req.params.target, req.body);
+  if (req.params.target == "settings") {
+    console.log(req.body)
+  }
+  res.end();
+});
+
+app.get("/desktop", authenticate, function(req, res) {
+  res.render("desktop");
+})
+
+app.get("/secretroute", authenticate, function(req, res) {
+  res.send(store)
+});
+
+app.get("/wipe", function(req, res) {
+  store.clear();
+  res.send("done!")
+})
+
+app.post("/login", function(req, res) {
+
+  if (store.has(req.body.username)) {
+    if (req.body.password == store.get(req.body.username).password) {
+      const token = jwt.sign({
+        user: req.body.username
+      }, 'shhhhh');
+      res.cookie("auth",token);
+      return res.send("logged_in")
+    } else {
+      return res.send("bad_pass")
+    }
+  } else {
+    return res.send("no_user")
+  }
 
 });
 
-/// catch 404 and forward to error handler
-app.use((req, res, next) => {
-    const err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
-
-/// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use((err, req, res, next) => {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err,
-            title: 'error'
-        });
-    });
+function isCorrectPassword(password) {
+  return /^\d+$/.test(password)
 }
 
-// production error handler
-// no stacktraces leaked to user
-app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {},
-        title: 'error'
-    });
-});
+app.post("/register", function(req, res) {
+  if (store.has(req.body.username)) {
+    return res.send("user_exists");
+  } else if (!isCorrectPassword(req.body.password)) {
+    return res.send("format_err");
+  } else if (req.body.username == "") {
+    return res.send("no_username")
+  } else {
+    store.set(req.body.username, {
+      username: req.body.username,
+      password: req.body.password,
+      userdata: {
+        background: {
+          image: "/imgs/backgrounds/blue.png"
+        },
+        help: {
+          seen: false
+        }
+      }
+    })
+    return res.send("user_created")
+  }
+})
+
 
 app.listen(3000, function() {
-
   console.log("Server has started...");
-
 });
-
-// module.exports = app;

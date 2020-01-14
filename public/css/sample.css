@@ -1,0 +1,18 @@
+.border-header {
+
+  font-size: 12px;
+  position: relative;
+  display: inline;
+  bottom: 11px;
+  left: 10px;
+  padding: 0 3px;
+  background: rgb(222, 222, 222);
+
+}
+
+.item-border {
+
+  margin: 20px;
+  border: 1px solid rgb(163, 161, 161);
+
+}

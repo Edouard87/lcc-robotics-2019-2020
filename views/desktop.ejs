@@ -3,55 +3,45 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/css/master.css">
-    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/windows.css">
+    <link rel="stylesheet" href="/css/desktop-icons.css">
+    <link rel="stylesheet" href="/css/menu-bar.css">
+    <script src="/components/jquery/dist/jquery.min.js"></script>
+    <script src="/components/mustache/mustache.min.js"></script>
+    <script src="/components/js-cookie/src/js.cookie.js"></script>
     <title>Desktop</title>
   </head>
   <body>
     <div class="desktop">
       <div class="menu-bar">
-        <div class="menu-bar-img">
-          <img src="/imgs/apple-logo.png" alt="">
-        </div>
-        <div class="first menu-bar-item">
-          <p>File</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Edit</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>View</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Tools</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Window</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Services</p>
-        </div>
-        <div class="menu-bar-item">
-          <p>Help</p>
-        </div>
+        
       </div>
-      <div id="window" class="window">
-        <div id="windowheader" class="window-header">
-          <div class="header-button-wrapper">
-            <div class="close">
-
-            </div>
-          </div>
-        </div>
-        <div class="window-content">
-
-        </div>
-        <label for="">Open App</label>
-        <input id="app-name" type="text" name="" value="">
-        <span id="get-app">Open</span>
+      <div class="menu-bar-right-buttons">
+        <img id="a-icon" src="/imgs/a-icon.png" alt="">
+        <img src="/imgs/workspagemanager.png" alt="">
+        <h1>Workspace Manager</h1>
       </div>
     </div>
     
+    <script src="/js/randomiser.js"></script>
+    <script src="/js/cookies.js"></script>
+    <script src="/js/set-lang.js"></script>
     <script src="/js/load-app.js"></script>
+    <script src="/js/menu-bar.js"></script>
     <script src="/js/ds.js"></script>
+    <script src="/js/create-window.js"></script>
+    <script src="/js/test-window.js"></script>
+    <script src="/js/help-window.js"></script>
+    <script>
+    
+      $("body").on("logout", function(e, data) {
+        saveWindows();
+        Cookies.remove("auth");
+        location.reload();
+      });
+    
+    </script>
+    
+
   </body>
 </html>

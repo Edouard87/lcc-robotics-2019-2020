@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../../components/mustache/mustache.min.js"></script>
+    <script src="../../components/jquery/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles/master.css">
+    <link rel="stylesheet" href="/../../css/content-control.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/load-texts.js"></script>
+    <script src="js/load-students.js"></script>
+    <title>People</title>
+</head>
+<body></body>
+    <!-- Hight: 283px -->
+    <!-- Width: 598px-->
+    <div class="top-button-bar">
+        <img src="/../../imgs/hard-disk-icon.png" alt="">
+        <p>
+          <en style="display: none"><label class="items"></label> items, 1.5GB available on hard disk</en>
+          <fr style="display: none"><label class="items"></label> itèmes, 1.5Go disponibles sur ce disque</fr>
+        </p>
+    </div>
+    <div class="top-map">
+        <div class="sized-big" id="col-1" style="display: none">
+            <img src="img/dir-icon.png" alt="">
+            <h1>Loading...</h1>
+        </div>
+        <div style="display: none" id="sized-1" class="sized-small">
+            <img src="img/right-arrow.png" alt="">
+        </div>
+        <div style="display: none" class="sized-big" id="col-2">
+            <img src="img/dir-icon.png" alt="">
+            <h1>Loading...</h1>
+        </div>
+        <div style="display: none" class="sized-small" id="sized-2">
+            <!-- <img src="img/right-arrow.png" alt=""> -->
+        </div>
+        <div class="sized-big"></div>
+        <div class="sized-small"></div>
+        <div class="sized-big"></div>
+        <div class="sized-small"></div>
+    </div>
+    <div class="top-scrollbar">
+
+    </div>
+    <div class="file-selector">
+        <div class="selector-col sized-big" id="col-1">
+            </div>
+        <div class="scrollbar sized-small"></div>
+        <div class="selector-col sized-big" id="col-2"></div>
+        <div class="scrollbar sized-small"></div>
+        <div class="selector-col sized-big"></div>
+        <div class="scrollbar sized-small"></div>
+        <div class="selector-col sized-big"></div>
+        <div class="scrollbar sized-small"></div>
+    </div>
+    <script src="js/load-data.js">
+    </script>
+    <script src="/../../js/set-lang.js">
+    </script>
+    <script src="/../../js/dragframe.js"></script>
+</body>
+</html>

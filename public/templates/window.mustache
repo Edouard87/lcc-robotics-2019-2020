@@ -1,0 +1,21 @@
+<div app="{{app}}" window_name="{{window_name}}" meta_1="{{meta_1}}" meta_2="{{meta_2}}" meta_3="{{meta_3}}" meta_4="{{meta_4}}" page_index="{{page_index}}" wid="{{wid}}" style="top: {{top}}px; left: {{left}}px; width: {{width}}px; height: {{height}}px" class="window draggable {{desktop_window}}">
+    <div id="windowheader" class="window-header">
+        <div class="header-item-wrapper header-left">
+        <div delTarget="{{wid}}" class="close">
+
+        </div>
+        </div>
+        <div class="header-item-wrapper header-centered">
+        <div class="window-icon">
+
+        </div>
+        <h1>{{window_name}}</h1>
+        </div>
+        <div class="header-item-wrapper header-right">
+        <div class="header-right">
+        </div>
+        </div>
+    </div>
+    <div style="display: none" class="iframe-cover"></div>
+    <iframe wid="{{wid}}" class="window-content" style="height: {{content_height}}px" meta_1="{{meta_1}}" meta_2="{{meta_2}}" meta_3="{{meta_3}}" meta_4="{{meta_4}}" src="{{page_index}}" frameborder="0"></iframe>
+</div>
