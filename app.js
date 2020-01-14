@@ -1,4 +1,3 @@
-
 const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
@@ -73,7 +72,7 @@ app.get("/desktop", authenticate, function(req, res) {
 })
 
 app.get("/secretroute", authenticate, function(req, res) {
-  res.send(store.get(req.decoded.user).userdata.background)
+  res.send(store)
 });
 
 app.get("/wipe", function(req, res) {
@@ -117,6 +116,9 @@ app.post("/register", function(req, res) {
       userdata: {
         background: {
           image: "/imgs/backgrounds/blue.png"
+        },
+        help: {
+          seen: false
         }
       }
     })

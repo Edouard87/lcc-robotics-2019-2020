@@ -113,7 +113,9 @@ body {
 
     height: 75px;
     width: 100%;
-    background: rgb(252,255,250)
+    background: rgb(252,255,250);
+    margin-top: 10px;
+    margin-bottom: 10px;
 
 }
 

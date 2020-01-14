@@ -95,14 +95,21 @@
         console.log(seenWelcome)
         if (seenWelcome == undefined) {
             console.log("loading welcome screen.");
+            var window_name;
+            if (lang == "en") {
+              window_name = "Welcome"
+            } else {
+              window_name = "Bienvenue"
+            }
             parent.createWindow({
-                page_index: "/welcome_status_messages/welcome.html",
-                window_name: "Welcome!",
+                page_index: "/apps/welcomeHelp/index.html",
+                window_name: window_name,
                 width: window.innerWidth-100,
                 height: window.innerHeight-100,
                 top: 0,
                 left: 0,
-                app: "welcome"
+                app: "welcome",
+                meta_2: "spawned"
             })
         }
       $("#header-image").attr("src","imgs/loginHeader_" + lang + ".png")

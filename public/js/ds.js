@@ -102,12 +102,28 @@ $.ajax({
     url: "/getdata",
     method: "get",
     success: function(userdata) {
+      var window_name;
+      if (lang == "en") {
+        window_name = "Welcome"
+      } else {
+        window_name = "Bienvenue"
+      }
         console.log(userdata);
         loadIcons(userdata.icons)
         loadWindows(userdata.windows);
-        console.log(userdata.background.image)
         $("body").css("background-image", "url('" + userdata.background.image + "')")
         $("body").attr("background-image", userdata.background.image)
+        if (!userdata.help.seen) {
+          createWindow({
+            page_index: "/apps/aboutApp/index.html",
+            window_name: window_name,
+            width: window.innerHeight - 100,
+            height: window.innerHeight - 100,
+            app: "welcome",
+            meta_1: "ignore",
+            meta_2: "spawned"
+          });
+        }
     }
 });
 
@@ -150,18 +166,21 @@ function saveIcons() {
 function saveWindows() {
     var windows = []
     $(".window").each(function() {
+      console.log($(this).attr("meta_1") != "ignore")
+      if ($(this).attr("meta_1") != "ignore") {
         windows.push({
-            page_index: $(this).attr("page_index"),
-            window_name: $(this).attr("window_name"),
-            top: $(this).css("top").split("px").shift(),
-            left: $(this).css("left").split("px").shift(),
-            width: $(this).css("width").split("px").shift(),
-            height: $(this).css("height").split("px").shift(),
-            meta_1: $(this).attr("meta_1"),
-            meta_2: $(this).attr("meta_2"),
-            meta_3: $(this).attr("meta_3"),
-            meta_4: $(this).attr("meta_4")
+          page_index: $(this).attr("page_index"),
+          window_name: $(this).attr("window_name"),
+          top: $(this).css("top").split("px").shift(),
+          left: $(this).css("left").split("px").shift(),
+          width: $(this).css("width").split("px").shift(),
+          height: $(this).css("height").split("px").shift(),
+          meta_1: $(this).attr("meta_1"),
+          meta_2: $(this).attr("meta_2"),
+          meta_3: $(this).attr("meta_3"),
+          meta_4: $(this).attr("meta_4")
         })
+      }
     });
     $.ajax({
       url: "/save/windows",

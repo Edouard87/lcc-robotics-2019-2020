@@ -5,20 +5,131 @@
     <script src="../../components/mustache/mustache.min.js"></script>
     <script src="../../components/jquery/dist/jquery.min.js"></script>
     <script src="/../../components/js-cookie/src/js.cookie.js"></script>
+    <script src="/../../components/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <link rel="stylesheet" href="styles/master.css">
+    <link rel="stylesheet" href="/../../components/malihu-custom-scrollbar/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="/../../css/button.css">
+    <link rel="stylesheet" href="/../../css/content-control.css">
+    <link rel="stylesheet" href="/../../css/basic-style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
 <body>
-    <h1>What is this?</h1>
-    <p>Yes, the Lower Canada College team <em>is</em> centered around the theme of Jurassic Park, but the website team thought simply making a regular website would be quite boaring––not to mention the fact that it could be accompplished using builders like Word Press</p>
-    <p>We wanted to make something that would truly fascinare the judges. As we were thinking about the possibilities of the website, we came accross the following scene from teh movie.</p>
-    <p>Here, the main character logs into an old-looking computer and secures the entire building. That was the springboard for the entire website.</p>
-    <p>Indeed, this website is themed around the Rhapsody operating system, a typical operating system for the time that greatly ressembles the one you saw on screen in the movie.</p>
-    <p>This operating system, however, <em>is</em> dissimilar than the one you saw in the movie, which was an operating system called IRIX developed by the Silicon Graphics Co. This operating system is a mockup of the Apple Rhapsody operating system.</p>
-    <p>The sole explanation for the discrepancy is that we, the robotics team, found the IRIX operating system relatively boaring for most. On the other hand, most people have used a mac at some point in their lives, and thus, seeing its ancestor may be a more exhilerating experience.</p>
-    <p>Please consult the help menu should you find yourself confused or lost.</p>
+    <div class="container-scroll">
+        <h1 class="large-header">What is this?</h1>
+        <h4>You may have noticed, however, that what you see here <em>is not</em> the same as the IRIX workstation in the Original Jurassic Park movie.</h4>
+        <p>The reason for this is the answer to the following question: <em>do you have <strong>any</strong> idea what IRIX is?</em></p>
+        <h4>The anser is no</h4>
+        <p>Even if Silicon Graphics only became defunct in as late as 2009, not many people have <em>any</em> idea what the
+        company was, and not many people have ever used the actual operating system. It is thus not very impressive for anyone.
+        </p>
+        <p>We, on the other hand, wanted to make something that would be <em>impressive</em>, and, well, Silicon Graphics just didn't really achieve that goal.
+        Most people, however, have used a Mac before, and have seen the MacOS operating system.</p>
+        <h4>This is MacOS Rhapsody</h4>
+        <p>At about the same as IRIX was being developped, Apple was also creating an operating system of its own, which greatly ressembled IRIX, called 
+            Mac OS X Server 1.0.
+        </p>
+        <p>Before releasing Mac OS X Server 1.0, however, Apple released unstable versions only meant for developers. These were
+          called Rhapsody Developer Release 1 and Rhapsody Developer Release 2, respectively. </p>
+        <p>The robotics website is based off of Rhapsody Developer Release 2. Although We have attempted to emulate most
+          of its features, it is <em>not</em> indetical</p>
+        <p>The following video is a demo of Rhapsody Developer Release 1.</p>
+        <h2>Rhapsody</h2>
+        <p class="disclaimer">Please note that the below video does not belong to Lower Canada College and has been
+        uploaded by a third party who is not affiliated with Lower Canada College.</p>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/HZUhzQzJ3jI" frameborder="0"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <h1 class="large-header">Using the Site</h1>
+        <h2>Installing Apps</h2>
+        <p>Each app on the operating system represents a website component as per the CRC rulebook. Since this is a new account, there
+            is no app currently installed on the system.
+        </p>
+        <p>Originally, you would have had to use some kind of browser to obtain apps, just as we do today. Here, however, installing apps is done through the App Installer. Open
+            the App Installer by pressing on the Tools menu at the top of your screen and clicking App Installer.
+        </p>
+        <div class="images-wrapper">
+            <img src="img/app-installer.png">
+        </div>
+        <p>Then, in the menu that opens, select the app you wish to install and click Install.</p>
+        <div class="images-wrapper">
+            <img src="img/app-installer-menu.png">
+        </div>
+        <h2>Opening Apps</h2>
+        <p>Once the app is installed, you can head over to the desktop (keep in mind that the windows can be dragged by grabbing their top) and double-click on the icon.</p>
+        <h2>Uninstalling Apps</h2>
+        <p>To delete an app, you must simply click on the App Uninstaller under Tools and click Uninstall.</p>
+        <h2>Changing the Language</h2>
+        <p>To change the language of the operating system, head over to Tools and click on Preferences.</p>
+        <div class="images-wrapper">
+            <img src="img/preferences.png">
+        </div>
+        <p>Then, click on Language and Open</p>
+        <div class="images-wrapper">
+            <img src="img/language-pref.png">
+        </div>
+        <p>Then, click on your desired language and click Select</p>
+        <div class="images-wrapper">
+            <img src="img/set-lang.png">
+        </div>
+    </div>
+    <div id="close-button" style="bottom: 20px; right: 20px;" class="button-right-wrapper positioned">
+      <div class="button-right">
+        <div class="button-content">
+          <h1>
+            <en>Close</en>
+            <fr>Fermer</fr>
+          </h1>
+        </div>
+      </div>
+    </div>
+    <div id="lang-change" style="bottom: 20px; left: 20px;" class="button-right-wrapper positioned">
+      <div class="button-right">
+        <div class="button-content">
+          <h1>
+            <en>Français</en>
+            <fr>English</fr>
+          </h1>
+        </div>
+      </div>
+    </div>
+    <script>
+        (function($){
+            $(window).on("load",function(){
+                $(".container-scroll").mCustomScrollbar({
+                    theme: "3d-thick-dark"
+                });
+            });
+        })(jQuery);
+        if (window.frameElement.getAttribute("meta_2") != "spawned") {
+            $("#lang-change").css("display","none")
+        }
+        $("#close-button").on("click", function() {
+            console.log("closing...")
+            $.ajax({
+                url: "/save/help",
+                method: "post",
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    seen: true
+                }),
+                dataType: 'json',
+                complete: function(data) {
+                    parent.$(".window[app='welcome']").remove();
+                    console.log("done!")
+                }
+            })
+        });
+        $("#lang-change").on("click", function() {
+            if ($("en").css("display") == "block") {
+                Cookies.set("lang", "fr");
+            } else {
+                Cookies.set("lang", "en");
+            }
+            parent.location.reload();
+        });
+        $("body").css("height", window.frameElement.offsetHeight)
+    </script>
     <script src="/../../js/cookies.js"></script>
     <script src="/../../js/set-lang.js"></script>
 </body>

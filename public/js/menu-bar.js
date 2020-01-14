@@ -17,7 +17,8 @@ var menuItems = [
               label_fr: "Fermer la session",
               app: "logout",
               window_height: 180,
-              window_width: 290 
+              window_width: 290,
+              meta_1: "ignore"
             }
         ]
     },
@@ -25,7 +26,7 @@ var menuItems = [
       label_en: "Tools",
       label_fr: "Outils",
       submenus: [{
-        label_en: "Settings",
+        label_en: "Preferences",
         label_fr: "Parmantères",
         app: "settings",
         window_height: 450,
@@ -50,12 +51,20 @@ var menuItems = [
       label_en: "Help",
       label_fr: "Aide",
       submenus: [{
-        label_en: "What is this?",
-        label_fr: "Quest-ce que c'est?",
+        label_en: "Login Help",
+        label_fr: "Ouvrir",
+        app: "welcomeHelp",
+        window_height: 500,
+        window_width: 600
+      },
+      {
+        label_en: "App Help",
+        label_fr: "Ouvrir",
         app: "aboutApp",
-        window_height: 280,
-        window_width: 430
-      }]
+        window_height: 500,
+        window_width: 600
+      }
+    ]
     }
 ]
 
@@ -92,7 +101,7 @@ for (var i = 0; i < menuItems.length; i++) {
     for (var a = 0; a < menuItems[i].submenus.length; a++) {
 
         menuItems[i].submenus[a].label = menuItems[i].submenus[a]["label_" + lang];
-        $("#dropdown-menu-" + i).append(`<div window_width="${menuItems[i].submenus[a].window_width}" window_height="${menuItems[i].submenus[a].window_height}" app="${menuItems[i].submenus[a].app}" app_name="${menuItems[i].submenus[a].label}" origin_menu="${i}" origin="menu-item-${i}" id="submenu-item-${i}-${a}" app="${menuItems[i].submenus[a].app}" class="dropdown-menu-item"><p>${menuItems[i].submenus[a].label}</p></div>`)
+        $("#dropdown-menu-" + i).append(`<div meta_1="${menuItems[i].submenus[a].meta_1}" window_width="${menuItems[i].submenus[a].window_width}" window_height="${menuItems[i].submenus[a].window_height}" app="${menuItems[i].submenus[a].app}" app_name="${menuItems[i].submenus[a].label}" origin_menu="${i}" origin="menu-item-${i}" id="submenu-item-${i}-${a}" app="${menuItems[i].submenus[a].app}" class="dropdown-menu-item"><p>${menuItems[i].submenus[a].label}</p></div>`)
 
     }
 
@@ -106,7 +115,8 @@ $(".dropdown-menu-item").on('click', function () {
     window_name: $(this).attr("app_name"),
     width: $(this).attr("window_width"),
     height: $(this).attr("window_height"),
-    app: $(this).attr("app")
+    app: $(this).attr("app"),
+    meta_1: $(this).attr("meta_1")
   });
 
 });

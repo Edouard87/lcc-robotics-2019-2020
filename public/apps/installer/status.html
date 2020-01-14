@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="../../components/jquery/dist/jquery.min.js"></script>
+  <script src="../../components/mustache/mustache.min.js"></script>
+  <script src="/../../components/js-cookie/src/js.cookie.js"></script>
+  <link rel="stylesheet" href="css/master.css">
+  <link rel="stylesheet" href="/../../apps/fileExplorer/styles/master.css">
+  <link rel="stylesheet" href="/../../css/button.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+    <en>
+        <p class="message-en">Loading...</p>
+    </en>
+    <fr>
+      <p class="message-fr">Chargement...</p>
+    </fr>
+  <div id="ok-button" class="button-right-wrapper positioned">
+    <div class="button-right">
+      <div class="button-content">
+        <h1>
+          OK
+        </h1>
+      </div>
+    </div>
+  </div>
+  <!-- <script src="/../../js/ds.js"></script> -->
+  <script src="/../../js/cookies.js"></script>
+  <script src="/../../js/set-lang.js"></script>
+  <script>
+      
+      $(".message-en").html(window.frameElement.getAttribute("meta_1"));
+      $(".message-fr").html(window.frameElement.getAttribute("meta_2"));
+      $("#ok-button").on("click", function() {
+        parent.$(".window[wid='" + window.frameElement.getAttribute("wid") + "']").remove();
+      });
+  
+  </script>
+</body>
+
+</html>

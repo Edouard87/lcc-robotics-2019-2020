@@ -82,3 +82,7 @@ border-bottom: none !important;
   right: 20px;
   bottom: 20px;
 }
+
+p {
+    margin: 10px 10px;
+}

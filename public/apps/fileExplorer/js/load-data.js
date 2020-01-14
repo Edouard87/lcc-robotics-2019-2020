@@ -36,7 +36,8 @@ $.ajax({
                   item_num: i,
                   arrow_display: "block",
                   total_items: roles.length,
-                  type: "0"
+                  type: "0",
+                  type: request
                 }));
             }
         $(".selector-col-item").on("click", function () {
@@ -74,7 +75,8 @@ $.ajax({
                   total_items: results.length,
                   type: "1",
                   content: results[i]["description_" + lang],
-                  contributions: contributions
+                  contributions: contributions,
+                  img: results[i].img
                 }));
             }
             $(".selector-col-item").on('dblclick', function() {
@@ -94,7 +96,7 @@ $.ajax({
                         meta_1: $(this).attr("label"),
                         meta_2: $(this).attr("content"),
                         meta_3: $(this).attr("contributions"),
-                        meta_4: "students"
+                        meta_4: $(this).attr("img")
                     });
                 }
             })
@@ -115,7 +117,9 @@ $.ajax({
                   item_num: i,
                   arrow_display: "block",
                   total_items: data.length,
-                  type: "0"
+                  type: "0",
+                  type: request,
+                  img: data[i].img
                 }));
             }
             var results = [];
@@ -134,7 +138,8 @@ $.ajax({
                           arrow_display: "none",
                           total_items: data[i].pubs.length,
                           type: "1",
-                          content: data[i].pubs[a]["content_" + lang]
+                          content: data[i].pubs[a]["content_" + lang],
+                          img: data[i].pubs[a].img
                         }));
                     }
                   }
@@ -145,14 +150,14 @@ $.ajax({
                 })
                 $(".selector-col-item").on("dblclick", function () {
                   parent.createWindow({
-                    page_index: "/apps/fileExplorer/sample.html",
+                    page_index: "/apps/fileExplorer/text.html",
                     window_name: $(this).attr("label"),
                     width: 500,
                     height: 300,
                     meta_1: $(this).attr("label"),
                     meta_2: $(this).attr("content"),
                     meta_3: $(this).attr("contributions"),
-                    meta_4: "texts"
+                    meta_4: $(this).attr("img")
                   });
                 })
             })
@@ -166,7 +171,20 @@ $.ajax({
 function onHoverEffect(elm) {
     var colNum = parseInt(elm.attr("col_num"),10);
 
-    $(".top-map #col-" + colNum + " img").attr("src","/apps/students/img/" + elm.attr("label") + ".png");
+    console.log("++++++")
+    console.log(elm.attr("type") == "texts")
+    console.log(elm.attr("type"))
+
+    if (colNum == 2 || elm.attr("type") == "texts") {
+
+      $(".top-map #col-" + colNum + " img").attr("src", elm.attr("img"))
+
+    } else {
+
+        $(".top-map #col-" + colNum + " img").attr("src", "/apps/fileExplorer/img/col-1/" + elm.attr("label").split(" ")[0] + ".png")
+
+    }
+
     $(".top-map #col-" + colNum + " img").on("error", function() {
 
         if (colNum == 2) {
