@@ -36,28 +36,22 @@ function authenticate(req, res, next) {
   }
 }
 
-app.get("/", function (req, res) {
+app.get("/", function(req, res) {
 
-  res.render("test")
+  const token = req.cookies.auth
+  if (token == undefined) {
+    return res.render("welcome")
+  } else {
+    try {
+      const result = jwt.verify(token, 'shhhhh');
+      req.decoded = result;
+      return res.redirect("/desktop");
+    } catch (err) {
+      return res.render("welcome")
+    }
+  }
 
 });
-
-// app.get("/", function(req, res) {
-
-//   const token = req.cookies.auth
-//   if (token == undefined) {
-//     return res.render("welcome")
-//   } else {
-//     try {
-//       const result = jwt.verify(token, 'shhhhh');
-//       req.decoded = result;
-//       return res.redirect("/desktop");
-//     } catch (err) {
-//       return res.render("welcome")
-//     }
-//   }
-
-// });
 
 app.get("/getdata", authenticate, function(req, res) {
   res.send(store.get(req.decoded.user).userdata)
@@ -131,6 +125,6 @@ app.post("/register", function(req, res) {
 })
 
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function () {
   console.log("Server has started...");
 });
