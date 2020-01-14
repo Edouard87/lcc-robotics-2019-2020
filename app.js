@@ -36,22 +36,28 @@ function authenticate(req, res, next) {
   }
 }
 
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
 
-  const token = req.cookies.auth
-  if (token == undefined) {
-    return res.render("welcome")
-  } else {
-    try {
-      const result = jwt.verify(token, 'shhhhh');
-      req.decoded = result;
-      return res.redirect("/desktop");
-    } catch (err) {
-      return res.render("welcome")
-    }
-  }
+  res.render("test")
 
 });
+
+// app.get("/", function(req, res) {
+
+//   const token = req.cookies.auth
+//   if (token == undefined) {
+//     return res.render("welcome")
+//   } else {
+//     try {
+//       const result = jwt.verify(token, 'shhhhh');
+//       req.decoded = result;
+//       return res.redirect("/desktop");
+//     } catch (err) {
+//       return res.render("welcome")
+//     }
+//   }
+
+// });
 
 app.get("/getdata", authenticate, function(req, res) {
   res.send(store.get(req.decoded.user).userdata)
