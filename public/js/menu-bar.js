@@ -27,14 +27,14 @@ var menuItems = [
       label_fr: "Outils",
       submenus: [{
         label_en: "Preferences",
-        label_fr: "Parmantères",
+        label_fr: "Réglages",
         app: "settings",
         window_height: 450,
         window_width: 570
       },
       {
         label_en: "App Installer",
-        label_fr: "Installer des Applications",
+        label_fr: "Installer des applications",
         app: "installer",
         window_height: 450,
         window_width: 570
@@ -52,14 +52,14 @@ var menuItems = [
       label_fr: "Aide",
       submenus: [{
         label_en: "Login Help",
-        label_fr: "Ouvrir",
+        label_fr: "Menu d&#146;aide à l&#146;ouverture d&#146;une session",
         app: "welcomeHelp",
         window_height: 500,
         window_width: 600
       },
       {
-        label_en: "App Help",
-        label_fr: "Ouvrir",
+        label_en: "Site Help",
+        label_fr: "Menu d&#146;aide à l&#146;utilisation du site web",
         app: "aboutApp",
         window_height: 500,
         window_width: 600

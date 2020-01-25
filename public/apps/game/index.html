@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/../../components/mustache/mustache.min.js"></script>
+    <script src="/../../components/jquery/dist/jquery.min.js"></script>
+    <script src="/../../components/js-cookie/src/js.cookie.js"></script>
+    <script src="/../../components/malihu-custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <link rel="stylesheet" href="styles/master.css">
+    <link rel="stylesheet" href="/../../components/malihu-custom-scrollbar/jquery.mCustomScrollbar.css">
+    <link rel="stylesheet" href="/../../css/explain-page.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <en>
+        <h1>Game Description</h1>
+        <p>This year the competition consists of the usual 2v2, 5 minute games or “Heats”. During these heats, the teams
+          must attempt to score GPs, represented by bean bags, but with a key twist; you can’t actually touch any GPs!
+          Instead, your team must use power ups spread around the 36’ by 16’ field to influence the conveyor belt that
+          drops the bean bags into the teams bins, which switches direction every 30 seconds. GPs drop at an initial rate
+          of 1 every 4 seconds and it takes about 20 seconds for a GP to reach the edge from the drop point. The actuators
+          that control these power ups are as follows:</p>
+
+          <ul>
+              <li>Mushrooms: These increase the speed of the conveyor belt by either 2x or 1.5x the normal speed for 20
+                seconds. Each team has two mushrooms located outside the field; the farther one doubling the speed and
+                the closer one increasing the speed by 1.5x. These actuators at the corners of the field near the conveyor belt; one corner
+                for each team’s set of mushrooms. They are activated by applying pressure on its plate in the center of the
+                mushroom.</li>
+                <li>Chained Ball: This doubles the drop rate of the GPs for 20 seconds. Each team’s chained ball is
+                  located in a  corner opposite the conveyor belt. To activate it, a teams robot must press the ball, suspended by a
+                  chain, onto  a pressure plate without the robot touching the plate as well.</li>
+                <li>Hinged Board: This is a one time use actuator that flips the direction of the conveyor belt. This
+                  change also does not cancel any previous power ups in play. It is activated by pressing the hinged rectangle into
+                  a pressure plate and it can only be activated after the first minute of the heat. Each team’s board is located
+                  below the conveyor on the same side as their mushrooms.</li>
+                <li>Twister: The twister stops the conveyor completely for 10 seconds. There is a twist :) however,
+                  there is only one twister for both teams, so teams can stop each other from activating it. The twister itself is
+                  located in the center of the field and is activated by holding the twister perpendicular to the conveyor belt for
+                  3 consecutive seconds.</li>
+                <li>Arc: Each arc has a set function that is pre decided by its team. The teams have three options to
+                  choose from: triple the drop rate of the GPs, half the speed of the conveyor belt (however this changes cooldown to
+                  50 seconds upon activation), or drop a black GP that is worth 10 GPs. A team may not change its arc
+                  function mid game. The arc is activated by sliding a slider from one side to the other (the slider will start at
+                  the arc’s vertex). The teams arcs are located adjacent to each other 6 feet from the center and collectively
+                  span the width of the field.</li>
+          </ul>
+        <p>With the exception of the twister, a team cannot activate or interfere with the other team’s actuators. Each
+        actuator also has a 30 second cooldown upon activation indicated by a red right, unless specified otherwise
+        above. Why upon activation? Because power ups can be overwritten by another power up of the same type: speed
+        power ups (twister, mushrooms and arc) cancel any previous speed power ups, drop rate power ups (arc and chained
+        ball) cancel any previous drop rate power ups.</p>
+        <p>To start each heat, each team’s robots start in the same corner as their chained balls on squares marked with
+        their team's colours. When the timer starts, the teams must race to their hinged boards and whichever team
+        activates it first gets the conveyor to start moving GPs in their bin’s direction. This does not count as your
+        single use for the hinged board.</p>
+    </en>
+    <fr>
+        <h1> Description du jeu </h1>
+        <p> Cette année, la compétition se compose des matchs habituels de 2 contre 2, de 5 minutes ou "Heats". Pendant ces manches, les équipes
+            doit tenter de marquer des GP, représentés par des sacs de fèves, mais avec une touche clé; vous ne
+            pouvez réellement toucher aucun GP!
+            Au lieu de cela, votre équipe doit utiliser des power-ups répartis sur le terrain de 36 'par 16'
+            pour influencer la bande transporteuse qui
+            dépose les poufs dans les poubelles des équipes, qui changent de direction toutes les 30 secondes.
+            Les GP chutent à un rythme initial
+            de 1 toutes les 4 secondes et il faut environ 20 secondes pour qu'un GP atteigne le bord depuis le
+            point de chute. Les actionneurs
+            qui contrôlent ces power-ups sont les suivants: </p>
+
+        <ul>
+            <li> Champignons: ils augmentent la vitesse de la bande transporteuse de 2x ou 1,5x la vitesse
+            normale pendant 20
+            secondes. Chaque équipe a deux champignons situés à l'extérieur du terrain; le plus loin
+            doublant la vitesse et
+            le plus proche augmente la vitesse de 1,5x. Ces actionneurs aux coins du champ près de la
+            bande transporteuse; un coin
+            pour l'ensemble de champignons de chaque équipe. Ils sont activés en appliquant une pression
+            sur sa plaque au centre de la
+            champignon. </li>
+            <li> Boule enchaînée: cela double le taux de chute des GP pendant 20 secondes. Le ballon
+            enchaîné de chaque équipe est
+            situé dans un
+            coin opposé à la bande transporteuse. Pour l'activer, un robot d'équipe doit appuyer sur
+            le ballon, suspendu par un
+            chaîne, sur
+            une plaque de pression sans que le robot ne touche également la plaque. </li>
+            <li> Planche à charnière: il s'agit d'un actionneur à usage unique qui inverse la direction de
+            la bande transporteuse. Cette
+            changer aussi
+             n'annule pas les power-ups précédents en jeu. Il est activé en appuyant sur le rectangle
+            articulé dans
+            une pression
+            plaque et il ne peut être activé après la première minute de la chaleur. Le conseil
+            d'administration de chaque équipe est situé
+            sous le
+            convoyeur du même côté que leurs champignons. </li>
+            <li> Twister: le twister arrête complètement le convoyeur pendant 10 secondes. Il y a une
+            torsion :) cependant,
+            Il n'y a que un twister pour les deux équipes, afin que les équipes puissent s’empêcher de l’activer.
+            Le twister lui-même est
+            situé dans
+            le centre du champ et est activé en tenant le twister perpendiculaire à la bande
+            transporteuse pour 3 secondes consécutives. </li>
+            <li> Arc: Chaque arc a une fonction définie qui est prédéterminée par son équipe. Les équipes ont trois options pour
+            choisissez parmi:
+            tripler le taux de chute des GPs, la moitié de la vitesse de la bande transporteuse
+            (cependant, cela change le temps de recharge pour
+            50 secondes après l'activation), ou laissez tomber un GP noir qui vaut 10 GPs. Une équipe ne
+            peut pas changer son arc fonction milieu Jeu. L'arc est activé en faisant glisser un curseur d'un côté à l'autre (le curseur
+            commencera à l'arc sommet). Les arcs des équipes sont situés les uns à côté des autres à 6 pieds du centre et
+            collectivement enjambez le largeur du champ. </li>
+        </ul>
+        <p> À l'exception du twister, une équipe ne peut pas activer ou interférer avec les actionneurs de
+        l'autre équipe. Chaque
+        l'actionneur a également un temps de recharge de 30 secondes lors de l'activation indiqué par un droit
+        rouge, sauf indication contraire
+        au dessus. Pourquoi lors de l'activation? Parce que les power-ups peuvent être remplacés par un autre
+        power-up du même type: la vitesse
+        les power-ups (twister, champignons et arc) annulent les power-ups de vitesse précédents, les
+        power-ups de taux de chute (arc et
+        balle) annuler toute mise sous tension précédente. </p>
+        <p> Pour commencer chaque manche, les robots de chaque équipe commencent dans le même coin que leurs
+        boules enchaînées sur des cases marquées avec
+        les couleurs de leur équipe. Lorsque le chronomètre démarre, les équipes doivent courir vers leurs
+        planches à charnières et selon l'équipe
+        active, le premier convoyeur commence à déplacer les généralistes dans la direction de leur bac. Cela
+        ne compte pas comme votre
+        à usage unique pour la charnière. </p>
+    </fr>
+    
+    <script src="/../../js/cookies.js"></script>
+    <script src="/../../js/set-lang.js"></script>
+    <script src="/../../js/generate-scrollbar.js"></script>
+</body>
+</html>

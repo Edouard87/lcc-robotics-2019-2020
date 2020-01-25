@@ -1,8 +1,3 @@
-// console.log(texts)
-// console.log(students);
-
-// console.log)
-
 var lang = parent.lang;
 
 $.ajax({
@@ -15,7 +10,6 @@ $.ajax({
 
         var request = window.frameElement.getAttribute("meta_1");
         var data = eval(request);
-        console.log(data)
         var roles = [];
 
         if (request == "students") {
@@ -51,12 +45,8 @@ $.ajax({
                     }
                 }
             }
-            // $(".file-selector #col-2").empty()
-            console.log("loading...")
-            console.log(results);
             onHoverEffect($(this));
             for (var i = 0; i < results.length; i++) {
-                console.log("appending...")
                 var contributions = "";
                 for (var e = 0; e < results[i]["roles_" + lang].length; e++) {
                     if (e == 0) {
@@ -87,7 +77,6 @@ $.ajax({
                             contributions.push(data[i]["role_" + lang]);
                         }
                     }
-                    console.log(contributions)
                     parent.createWindow({
                         page_index: "/apps/fileExplorer/sample.html",
                         window_name: $(this).attr("label"),

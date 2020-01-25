@@ -4,7 +4,7 @@ var settings = [
         label_fr: "Langue du Système",
         name: "lang",
         description_en: "Change the system language. Supported languages are French and English",
-        description_fr: "Changez la langue du système d&#39exploitation. Les langues supportés sont le Français et l&#39Anglais",
+        description_fr: "Changez la langue du système d&#39exploitation. Les langues supportées sont le Français et l&#39Anglais.",
         window_width: 290.469,
         window_height: 410
     },
