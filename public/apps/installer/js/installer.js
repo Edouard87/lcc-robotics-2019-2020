@@ -36,8 +36,8 @@ var apps = [
       app_name_fr: "Description de la compétition",
       app: "comp",
       img: "/imgs/appIcons/crc.png",
-      window_height: 110,
-      window_width: 500,
+      window_height: 350,
+      window_width: 600,
       description_en: "An explanation of the components of the competition and of the its goal. This app also displays the time, place and name of this year&#146s competition.",
       description_fr: "Une collection d&#146images de l&#146équipe de robotique en train de travailler."
     },

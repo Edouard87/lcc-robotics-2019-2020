@@ -56,7 +56,7 @@ $.ajax({
                     }
                 }
                 $(".file-selector #col-2").append(Mustache.to_html(template, {
-                  label: results[i].name,
+                  label: results[i].name.replace(/'/g, '&#39'),
                   item_id: i,
                   item_col: 2,
                   col_num: 2,
@@ -64,7 +64,7 @@ $.ajax({
                   arrow_display: "none",
                   total_items: results.length,
                   type: "1",
-                  content: results[i]["description_" + lang],
+                  content: results[i]["description_" + lang].replace(/'/g, '&#39'),
                   contributions: contributions,
                   img: results[i].img
                 }));
