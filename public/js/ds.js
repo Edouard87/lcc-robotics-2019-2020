@@ -109,6 +109,7 @@ $.ajax({
         window_name = "Bienvenue"
       }
         console.log(userdata);
+        console.log("=============")
         loadIcons(userdata.icons)
         loadWindows(userdata.windows);
         $("body").css("background-image", "url('" + userdata.background.image + "')")
@@ -145,7 +146,7 @@ function saveIcons() {
         icons.push({
           app: $(this).attr("app"),
           app_name_en: $(this).attr("app_name_en"),
-          app_name_fr: $(this).attr("app_name_en"),
+          app_name_fr: $(this).attr("app_name_fr"),
           top: $(this).css("top"),
           left: $(this).css("left"),
           image: $(this).attr("image"),

@@ -5,10 +5,12 @@ $(".sample img").on("error", function() {
 
 });
 
-console.log(window.frameElement.getAttribute("meta_1").split(" ")[0])
+if (window.frameElement.getAttribute("meta_2") == "") {
+    $("#person-desc").parent().css("display","none")
+} else {
+    $("#person-desc").html(window.frameElement.getAttribute("meta_2"));
+}
 
 $("#name").html(window.frameElement.getAttribute("meta_1"))
-
-$("#person-desc").html(window.frameElement.getAttribute("meta_2"));
 
 $("#contributions").html(window.frameElement.getAttribute("meta_3"))

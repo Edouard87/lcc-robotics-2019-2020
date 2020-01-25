@@ -10,7 +10,7 @@ html, body {
 
 body {
     /* margin: 10px; */
-    margin: 0 !important;
+    /* margin:  !important; */
     font-family: Arial,
     Helvetica,
     sans-serif;
@@ -43,3 +43,62 @@ body {
   margin: 8px auto;
 }
 
+.image-section .header {
+  width: 100%;
+  margin: 0 1px;
+}
+
+.image-section .header h1 {
+  margin-left: 10px;
+  margin-top: 10px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.image-section .content {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.img-desc {
+  width: 50%
+}
+
+.image-section .content img {
+  margin: 10px;
+  width: 250px;
+}
+
+.image-section .content p {
+  margin-top: 10px;
+}
+
+.image-section .first-hr {
+  color: white;
+  margin-bottom: 0;
+}
+
+.image-section .second-hr {
+  margin-top: 0;
+}
+
+hr {
+  width: 400px;
+}
+
+.jumbotron-section h1 {
+  text-align: center;
+}
+
+.output-log {
+  overflow: scroll;
+  height: 100%;
+  width: 100%;
+}
+
+#gallery-desc {
+  text-align: center;
+}

@@ -43,12 +43,12 @@ $.ajax({
            var window_name
            $(".card-wrapper").on("dblclick", function () {
             parent.createWindow({
-                page_index: "/apps/aboutApp/gallery.html",
+                page_index: "/apps/gallery/gallery.html",
                 window_name: $(this).attr("label"),
                 width: 500,
                 height: 600,
-                meta_1: "ignore",
-                meta_2: "spawned"
+                meta_1: $(this).attr("galleryid"),
+                meta_2: $(this).attr("label")
              })
            });
         }

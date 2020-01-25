@@ -9,9 +9,7 @@ const fs = require("fs")
 const jwt = require("jsonwebtoken");
 
 const app = express();
-const store = require("data-store")("users", {
-  cwd: 'users'
-});
+const store = require("data-store")("/users");
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -38,18 +36,37 @@ function authenticate(req, res, next) {
   }
 }
 
-app.get("/", function(req, res) {
+function checkLang(req, res, next) {
+  try {
+    req.keys = JSON.parse(fs.readFileSync(__dirname + "/locale/keys_" + req.cookies.lang + ".json", "utf-8"));
+  } catch(err) {
+    req.cookies.lang = "en"
+    req.keys = JSON.parse(fs.readFileSync(__dirname + "/locale/keys_" + req.cookies.lang + ".json", "utf-8"));
+  }
+  next();
+}
+
+// app.get("/loading", checkLang, function(req, res) {
+//   res.render("loading", req.keys)
+// });
+
+app.get("/", checkLang, function(req, res) {
 
   const token = req.cookies.auth
-  if (token == undefined) {
-    return res.render("welcome")
+  // console.log(req.cookies)
+  if (req.cookies.loaded == undefined) {
+    return res.render("loading", req.keys)
   } else {
-    try {
-      const result = jwt.verify(token, 'shhhhh');
-      req.decoded = result;
-      return res.redirect("/desktop");
-    } catch (err) {
+    if (token == undefined) {
       return res.render("welcome")
+    } else {
+      try {
+        const result = jwt.verify(token, 'shhhhh');
+        req.decoded = result;
+        return res.redirect("/desktop");
+      } catch (err) {
+        return res.render("welcome")
+      }
     }
   }
 
@@ -67,18 +84,19 @@ app.post("/save/:target", authenticate, function(req, res) {
   res.end();
 });
 
-app.get("/desktop", authenticate, function(req, res) {
-  res.render("desktop");
+app.get("/desktop", authenticate, checkLang, function(req, res) {
+  console.log(req.keys);
+  res.render("desktop", req.keys);
 })
 
-app.get("/secretroute", authenticate, function(req, res) {
-  res.send(store)
-});
+// app.get("/secretroute", authenticate, function(req, res) {
+//   res.send(store)
+// });
 
-app.get("/wipe", function(req, res) {
-  store.clear();
-  res.send("done!")
-})
+// app.get("/wipe", function(req, res) {
+//   store.clear();
+//   res.send("done!")
+// })
 
 app.post("/login", function(req, res) {
 
@@ -127,6 +145,6 @@ app.post("/register", function(req, res) {
 })
 
 
-app.listen(3000, function() {
+app.listen(process.env.PORT || 3000, function () {
   console.log("Server has started...");
 });
