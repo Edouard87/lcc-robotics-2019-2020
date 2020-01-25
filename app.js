@@ -46,9 +46,9 @@ function checkLang(req, res, next) {
   next();
 }
 
-app.get("/loading", checkLang, function(req, res) {
-  res.render("loading", req.keys)
-});
+// app.get("/loading", checkLang, function(req, res) {
+//   res.render("loading", req.keys)
+// });
 
 app.get("/", checkLang, function(req, res) {
 
@@ -89,14 +89,14 @@ app.get("/desktop", authenticate, checkLang, function(req, res) {
   res.render("desktop", req.keys);
 })
 
-app.get("/secretroute", authenticate, function(req, res) {
-  res.send(store)
-});
+// app.get("/secretroute", authenticate, function(req, res) {
+//   res.send(store)
+// });
 
-app.get("/wipe", function(req, res) {
-  store.clear();
-  res.send("done!")
-})
+// app.get("/wipe", function(req, res) {
+//   store.clear();
+//   res.send("done!")
+// })
 
 app.post("/login", function(req, res) {
 
