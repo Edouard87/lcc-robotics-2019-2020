@@ -21,6 +21,8 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 app.use(express.static("public"));
 
+app.use(favicon(__dirname + '/public/favicon.png'));
+
 function authenticate(req, res, next) {
   const token = req.cookies.auth
   if (token == undefined) {
@@ -142,6 +144,10 @@ app.post("/register", function(req, res) {
     })
     return res.send("user_created")
   }
+});
+
+app.get("*", function(req, res) {
+  res.redirect("/");
 })
 
 

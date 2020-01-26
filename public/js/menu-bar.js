@@ -7,10 +7,17 @@ var menuItems = [
         submenus: [
             {
                 label_en: "About this School",
-                label_fr: "Notre École",
+                label_fr: "Notre école",
                 app: "aboutSchool",
                 window_height: 280,
                 window_width: 430
+            },
+            {
+              label_en: "Copyright",
+              label_fr: "Droits d'auteur",
+              app: "copyright",
+              window_height: 280,
+              window_width: 430
             },
             {
               label_en: "Logout",
@@ -134,9 +141,14 @@ function recalculateMenuBar() {
     totalWidth = $(this).offset().left + $(this).outerWidth(true);
     widths.push(totalWidth);
   });
-  var max = widths.reduce(function (a, b) {
-    return Math.max(a, b);
-  });
+  try {
+    var max = widths.reduce(function (a, b) {
+      return Math.max(a, b);
+    });
+  } catch(err) {
+
+  }
+  
   if (max > innerWidth) {
     $(".menu-bar-right-buttons").css("display", "none");
     $(".menu-bar").css("width", max + "px");

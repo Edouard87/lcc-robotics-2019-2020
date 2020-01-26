@@ -32,7 +32,7 @@ var galleries = [{
     label_en: "Photos of the robot",
     description_en: "Images of the robot at different stages of its construction.",
     label_fr: "Photos du robot",
-    description_fr: "Images du robot à différentes stades de sa construction.",
+    description_fr: "Images du robot à différents stades de sa construction.",
       images: [{
           img: "img/robot/student-working-frame.jpg",
           label_en: "Drive Base",

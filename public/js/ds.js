@@ -1,4 +1,4 @@
-$(document).on("click", function() {
+$(document).on("click", function(event) {
 
     if ($(event.target).attr("class") != "icon-image") {
 
@@ -30,8 +30,6 @@ function loadIcons(icons) {
         console.log("err!")
 
     }
-
-    
 
 }
 
@@ -93,6 +91,7 @@ function createIcon(meta) {
         });
         
         saveIcons();
+        recalculateMenuBar();
 
       }
     })
@@ -108,10 +107,9 @@ $.ajax({
       } else {
         window_name = "Bienvenue"
       }
-        console.log(userdata);
-        console.log("=============")
-        loadIcons(userdata.icons)
+        loadIcons(userdata.icons);
         loadWindows(userdata.windows);
+      recalculateMenuBar();
         $("body").css("background-image", "url('" + userdata.background.image + "')")
         $("body").attr("background-image", userdata.background.image)
         if (!userdata.help.seen) {
