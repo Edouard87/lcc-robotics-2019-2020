@@ -48,11 +48,11 @@ var students = [{
     },
     {
         name: "David Smith",
-        description_en: "",
-        description_fr: "",
-        roles_en: ["Website"],
-        roles_fr: ["Site Web"],
-        img: "img/people/bogdan.jpg"
+        description_en: "Head of website front end design.",
+        description_fr: "Responsable de la conception front-end du site Web.",
+        roles_en: ["Website","Text proofreading"],
+        roles_fr: ["Site Web","Correction des textes"],
+        img: "img/people/david.png"
     },
     {
         name: "Will Cook",
