@@ -125,8 +125,6 @@ function isCorrectPassword(password) {
 app.post("/register", function(req, res) {
   if (store.has(req.body.username)) {
     return res.send("user_exists");
-  } else if (!isCorrectPassword(req.body.password)) {
-    return res.send("format_err");
   } else if (req.body.username == "") {
     return res.send("no_username")
   } else {
